@@ -14,14 +14,21 @@
 
   .salesforceform .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+  }
+
+  @media screen and (min-width: 800px) {
+    .salesforceform .row {
+      flex-direction: row;
+    }
   }
 
   .salesforceform .col {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .salesforceform table {
@@ -48,6 +55,7 @@
   .salesforceform input[type="text"],
   .salesforceform input[type="tel"],
   .salesforceform input[type="date"],
+  .salesforceform input[type="number"],
   .salesforceform textarea,
   .salesforceform select {
     width: 100%;
@@ -85,6 +93,9 @@
     gap: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1000;
+  }
+  .salesforceform #number-travelers-modal .row {
+    flex-direction: row;
   }
   .salesforceform input[type="number"].number-travelers-input {
     width: 60px;
@@ -194,26 +205,23 @@
             >Type of Tour:</label
           ><select
             required
-            id="00N8B000008O9h8"
+            id="Type_of_Land_Tour"
             title="Main Product Type"
-            name="00N8B000008O9h8"
+            name="Type_of_Land_Tour"
           >
-            <option value="">--None--</option>
-            <option value="Daytour">Daytour</option>
-            <option value="Cloudforest Lodge">Cloudforest Lodge</option>
-            <option value="Set Ecuador Tour">Set Ecuador Tour</option>
-            <option value="Tailor Made Tour">Tailor Made Tour</option>
-            <option value="Galapagos General">Galapagos General</option>
-            <option value="Galapagos Cruise">Galapagos Cruise</option>
-            <option value="Galapagos Land">Galapagos Land</option>
-            <option value="Galapagos Diving">Galapagos Diving</option>
-            <option value="Amazon Lodge">Amazon Lodge</option>
-            <option value="Amazon Cruise">Amazon Cruise</option>
-            <option value="Peru">Peru</option>
-            <option value="Colombia">Colombia</option>
-            <option value="Bolivia">Bolivia</option>
-            <option value="Unknown">Unknown</option>
-            <option value="Other">Other</option>
+            <option value="">- Select an option -</option>
+            <option value="Classic Galapagos Highlights">
+              Classic Galapagos Highlights
+            </option>
+            <option value="Galapagos Activity Tours">
+              Galapagos Activity Tours
+            </option>
+            <option value="Short one island extension">
+              Short one island extension
+            </option>
+            <option value="All-Inclusive Hotel Packages">
+              All-Inclusive Hotel Packages
+            </option>
           </select>
         </div>
         <div class="col">
@@ -226,7 +234,7 @@
             title="Booking Class"
             name="00N8B000008O9hI"
           >
-            <option value="">--None--</option>
+            <option value="">- Select an option -</option>
             <option value="Backpacker Gringo (Budget)">
               Backpacker Gringo (Budget)
             </option>
@@ -238,9 +246,6 @@
             </option>
             <option value="Luxury Gringo (5 stars)">
               Luxury Gringo (5 stars)
-            </option>
-            <option value="Super Deluxe Gringo (The very finest)">
-              Super Deluxe Gringo (The very finest)
             </option>
           </select>
         </div>
@@ -502,7 +507,7 @@
     nationalMode: false,
     preferredCountries: [
       "us",
-      "uk",
+      "gb",
       "ca",
       "au",
       "de",
