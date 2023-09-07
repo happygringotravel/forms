@@ -31,14 +31,21 @@
 
   .salesforceform .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+  }
+
+  @media screen and (min-width: 800px) {
+    .salesforceform .row {
+      flex-direction: row;
+    }
   }
 
   .salesforceform .col {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .box-shadow {
@@ -60,6 +67,9 @@
     gap: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1000;
+  }
+  .salesforceform #number-travelers-modal .row {
+    flex-direction: row;
   }
   .salesforceform input[type="number"].number-travelers-input {
     width: 60px;
@@ -131,6 +141,17 @@
           tabindex="50"
           onchange="recalculateDates(event)"
         />
+        <label class="required-label" for="number_of_days"
+          >Number of Days:</label
+        >
+        <input
+          required
+          id="number_of_days"
+          name="start_date"
+          size="12"
+          type="number"
+          tabindex="50"
+        />
         <input
           id="00N8c00000PAX7A"
           name="00N8c00000PAX7A"
@@ -139,34 +160,6 @@
           tabindex="50"
           hidden
         />
-
-        <label class="required-label" for="00N8B000008O9hI"
-          >Preferred Booking Class:</label
-        >
-        <select
-          required
-          id="00N8B000008O9hI"
-          title="Booking Class"
-          name="00N8B000008O9hI"
-          tabindex="70"
-        >
-          <option value="">--None--</option>
-          <option value="Backpacker Gringo (Budget)">
-            Backpacker Gringo (Budget)
-          </option>
-          <option value="Standard Gringo (2+3 stars)">
-            Standard Gringo (2+3 stars)
-          </option>
-          <option value="Comfortable Gringo (3+4 stars)">
-            Comfortable Gringo (3+4 stars)
-          </option>
-          <option value="Luxury Gringo (5 stars)">
-            Luxury Gringo (5 stars)
-          </option>
-          <option value="Super Deluxe Gringo (The very finest)">
-            Super Deluxe Gringo (The very finest)
-          </option>
-        </select>
       </div>
       <div class="col" style="text-align: left; vertical-align: top">
         <label class="required-label" for="email">Email</label>
@@ -309,6 +302,33 @@
           type="hidden"
           tabindex="60"
         />
+        <label class="required-label" for="00N8B000008O9hI"
+          >Preferred Booking Class:</label
+        >
+        <select
+          required
+          id="00N8B000008O9hI"
+          title="Booking Class"
+          name="00N8B000008O9hI"
+          tabindex="70"
+        >
+          <option value="">--None--</option>
+          <option value="Backpacker Gringo (Budget)">
+            Backpacker Gringo (Budget)
+          </option>
+          <option value="Standard Gringo (2+3 stars)">
+            Standard Gringo (2+3 stars)
+          </option>
+          <option value="Comfortable Gringo (3+4 stars)">
+            Comfortable Gringo (3+4 stars)
+          </option>
+          <option value="Luxury Gringo (5 stars)">
+            Luxury Gringo (5 stars)
+          </option>
+          <option value="Super Deluxe Gringo (The very finest)">
+            Super Deluxe Gringo (The very finest)
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -323,7 +343,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Set Ecuador Tour"
+              value="Set Itineraries"
             />Set Itineraries</label
           >
         </div>
@@ -332,14 +352,8 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Cloudforest Lodge"
+              value="Custom Made Itinerary"
             />Custom Made Itinerary</label
-          >
-        </div>
-        <div class="row">
-          <label
-            ><input type="checkbox" name="Type_of_Tour" value="Daytour" />Set
-            Itineraries</label
           >
         </div>
         <div class="row">
@@ -347,8 +361,17 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Cloudforest Lodge"
-            />Custom Made Itinerary</label
+              value="Birdwatching Trip"
+            />Birdwatching Trip</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Cloud Forest"
+            />Cloud Forest</label
           >
         </div>
       </div>
@@ -359,17 +382,14 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Galapagos Cruise"
+              value="Cruise"
             />Cruise</label
           >
         </div>
         <div class="row">
           <label
-            ><input
-              type="checkbox"
-              name="Type_of_Tour"
-              value="Galapagos Land"
-            />Land Tour</label
+            ><input type="checkbox" name="Type_of_Tour" value="Land Tour" />Land
+            Tour</label
           >
         </div>
         <div class="row">
@@ -377,7 +397,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Galapagos Diving"
+              value="Diving"
             />Diving</label
           >
         </div>
@@ -389,7 +409,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Amazon Lodge"
+              value="Lodge Tour"
             />Lodge Tour</label
           >
         </div>
@@ -398,7 +418,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Amazon Cruise"
+              value="River Cruise"
             />River Cruise</label
           >
         </div>
@@ -407,7 +427,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Unknown"
+              value="Adventure Tour"
             />Adventure Tour</label
           >
         </div>
@@ -419,7 +439,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Colombia"
+              value="Colombia Tour"
             />Colombia Tour</label
           >
         </div>
@@ -433,7 +453,7 @@
             ><input
               type="checkbox"
               name="Type_of_Tour"
-              value="Bolivia"
+              value="Bolivia Tour"
             />Bolivia Tour</label
           >
         </div>
@@ -460,24 +480,24 @@
     name="00N8c00000dTKt1"
     list="hdyfu_list"
   >
-    <option value="">--None--</option>
     <option value="Google search">Google search</option>
+    <option value="Bing">Bing</option>
     <option value="Happy Gringo Blog">Happy Gringo Blog</option>
-    <option value="Social Media">Social Media</option>
-    <option value="Happy Gringo Email Newsletter">
-      Happy Gringo Email Newsletter
-    </option>
-    <option value="TripAdvisor">TripAdvisor</option>
-    <option value="Google ads">Google ads</option>
     <option value="Other blog">Other blog</option>
-    <option value="Travel Guide">Travel Guide</option>
-    <option value="Friends or Family">Friends or Family</option>
-    <option value="Internet Search">Internet Search</option>
-    <option value="Recommendation from friend or family">
-      Recommendation from friend or family
+    <option value="Facebook">Facebook</option>
+    <option value="Instagram">Instagram</option>
+
+    <option value="Youtube">Youtube</option>
+    <option value="Tik Tok">Tik Tok</option>
+    <option value="Tripadvisor">Tripadvisor</option>
+    <option value="Trustpilot">Trustpilot</option>
+
+    <option value="Travel Guide Books">Travel Guide Books</option>
+    <option value="Family or Friends Recommendation">
+      Family or Friends Recommendation
     </option>
-    <option value="Social Media Channels">Social Media Channels</option>
-    <option value="Other">Other</option>
+
+    <option value="Other">Other (please specify)</option>
   </select>
   <input
     class="hidden"
@@ -521,7 +541,7 @@
   />
 </form>
 
-<!-- IMPUT PHONE COMPONENT  -->>
+<!-- IMPUT PHONE COMPONENT  -->
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 
 <script>
@@ -545,7 +565,7 @@
     nationalMode: false,
     preferredCountries: [
       "us",
-      "uk",
+      "gb",
       "ca",
       "au",
       "de",

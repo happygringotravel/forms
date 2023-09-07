@@ -13,24 +13,6 @@
     color: red;
   }
 
-  .salesforceform table {
-    width: 100%;
-    position: relative;
-  }
-
-  .salesforceform tr {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .salesforceform td {
-    width: 50%;
-    text-align: left;
-    vertical-align: top;
-    display: flex;
-    flex-direction: column;
-  }
-
   .salesforceform input[type="text"],
   .salesforceform input[type="tel"],
   .salesforceform input[type="date"],
@@ -45,14 +27,21 @@
 
   .salesforceform .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
+  }
+
+  @media screen and (min-width: 800px) {
+    .salesforceform .row {
+      flex-direction: row;
+    }
   }
 
   .salesforceform .col {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .salesforceform .container {
@@ -77,6 +66,9 @@
     gap: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     z-index: 1000;
+  }
+  .salesforceform #number-travelers-modal .row {
+    flex-direction: row;
   }
   .salesforceform input[type="number"].number-travelers-input {
     width: 60px;
@@ -320,24 +312,24 @@
     name="00N8c00000dTKt1"
     list="hdyfu_list"
   >
-    <option value="">--None--</option>
     <option value="Google search">Google search</option>
+    <option value="Bing">Bing</option>
     <option value="Happy Gringo Blog">Happy Gringo Blog</option>
-    <option value="Social Media">Social Media</option>
-    <option value="Happy Gringo Email Newsletter">
-      Happy Gringo Email Newsletter
-    </option>
-    <option value="TripAdvisor">TripAdvisor</option>
-    <option value="Google ads">Google ads</option>
     <option value="Other blog">Other blog</option>
-    <option value="Travel Guide">Travel Guide</option>
-    <option value="Friends or Family">Friends or Family</option>
-    <option value="Internet Search">Internet Search</option>
-    <option value="Recommendation from friend or family">
-      Recommendation from friend or family
+    <option value="Facebook">Facebook</option>
+    <option value="Instagram">Instagram</option>
+
+    <option value="Youtube">Youtube</option>
+    <option value="Tik Tok">Tik Tok</option>
+    <option value="Tripadvisor">Tripadvisor</option>
+    <option value="Trustpilot">Trustpilot</option>
+
+    <option value="Travel Guide Books">Travel Guide Books</option>
+    <option value="Family or Friends Recommendation">
+      Family or Friends Recommendation
     </option>
-    <option value="Social Media Channels">Social Media Channels</option>
-    <option value="Other">Other</option>
+
+    <option value="Other">Other (please specify)</option>
   </select>
   <input
     class="hidden"
@@ -403,7 +395,7 @@
     nationalMode: false,
     preferredCountries: [
       "us",
-      "uk",
+      "gb",
       "ca",
       "au",
       "de",
