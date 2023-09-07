@@ -1,0 +1,586 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+/>
+<style>
+  .salesforceform hr {
+    width: 100%;
+    border-top: 1px solid rgb(232, 232, 232);
+  }
+
+  .required-label:before {
+    content: "*";
+    color: red;
+  }
+
+  .salesforceform table {
+    width: 100%;
+    position: relative;
+  }
+
+  .salesforceform tr {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .salesforceform td {
+    width: 50%;
+    text-align: left;
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .salesforceform input[type="text"],
+  .salesforceform input[type="tel"],
+  .salesforceform input[type="date"],
+  .salesforceform input[type="number"],
+  .salesforceform textarea,
+  .salesforceform select {
+    width: 100%;
+  }
+
+  .salesforceform.container {
+  }
+
+  .salesforceform .row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .salesforceform .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .salesforceform .container {
+    padding: 5px;
+  }
+
+  .box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .salesforceform #number-travelers-container {
+    position: relative;
+  }
+
+  .salesforceform #number-travelers-modal {
+    border: 1px solid #dbdbdb;
+    position: absolute;
+    padding: 10px;
+    margin-top: 3px;
+    background-color: white;
+    width: 90%;
+    gap: 4px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 1000;
+  }
+  .salesforceform input[type="number"].number-travelers-input {
+    width: 60px;
+  }
+  .salesforceform input[type="number"].number-travelers-total {
+    width: 60px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+</style>
+
+<h1>CONTACT US AND GET A FREE QUOTE</h1>
+
+<form
+  id="salesforceform"
+  class="salesforceform"
+  action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+  method="POST"
+  onsubmit="handleSubmit(event)"
+>
+  <input name="Lead Source" type="hidden" value="WEBSITE FORM - CONTACT US" />
+
+  <input name="oid" type="hidden" value="00D8B0000008ibk" />
+  <input
+    name="retURL"
+    type="hidden"
+    value_="https://wordpress-314336-3661924.cloudwaysapps.com/thank-you/"
+  />
+
+  <div class="container">
+    <div class="row">
+      <div class="col" style="text-align: left; vertical-align: top">
+        <label class="required-label" for="00N8B000008ssXb"
+          >First & Last Name:</label
+        >
+        <input
+          required
+          id="00N8B000008ssXb"
+          maxlength="255"
+          name="00N8B000008ssXb"
+          size="20"
+          type="text"
+          tabindex="10"
+        />
+
+        <label class="required-label" for="phone">Phone:</label>
+        <input
+          required
+          id="phone"
+          maxlength="40"
+          name="phone"
+          size="20"
+          type="tel"
+          tabindex="30"
+          oninput="onlyNumbers(event)"
+        />
+        <div style="width: 100%; height: 20px"></div>
+
+        <label class="required-label" for="00N8c00000PAX7A">Start Date:</label>
+        <input
+          required
+          id="start_date"
+          name="start_date"
+          size="12"
+          type="date"
+          tabindex="50"
+          onchange="recalculateDates(event)"
+        />
+        <input
+          id="00N8c00000PAX7A"
+          name="00N8c00000PAX7A"
+          size="12"
+          type="hidden"
+          tabindex="50"
+          hidden
+        />
+      </div>
+      <div class="col" style="text-align: left; vertical-align: top">
+        <label class="required-label" for="email">Email</label>
+        <input
+          required
+          id="email"
+          maxlength="80"
+          name="email"
+          size="20"
+          type="text"
+          tabindex="20"
+        />
+
+        <div id="number-travelers-container">
+          <label class="required-label" for="00N8c00000gutTj"
+            >Number of travelers:</label
+          >
+          <input
+            required
+            id="00N8c00000gutTj"
+            title="Total Number Pax"
+            name="00N8c00000gutTj"
+            tabindex="40"
+            type="text"
+            onfocus="showModal(event)"
+            onclick="showModal(event)"
+          />
+
+          <div
+            id="number-travelers-modal"
+            onpointerleave="showModal(event,false)"
+            class="col hidden"
+          >
+            <div class="row">
+              <input
+                id="0-4"
+                name="travelers_0-4"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="0-4">0 - 4 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="5-11"
+                name="travelers_5-11"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="5-11">5 - 11 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="12-20"
+                name="travelers_12-20"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="12-20">12 - 20 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="21-29"
+                name="travelers_21-29"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="21-29">21 - 29 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="30-44"
+                name="travelers_30-44"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="30-44">30 - 44 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="45-64"
+                name="travelers_45-64"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="45-64">45 - 64 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="65+"
+                name="travelers_65+"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+              />
+              <label for="65+">65+ Years</label>
+            </div>
+            <hr />
+            <div class="row">
+              <label for="total-number-of-travelers"
+                >Total Number of Passengers</label
+              >
+              <input
+                readonly
+                id="total-number-of-travelers"
+                type="number"
+                class="number-travelers-total"
+              />
+            </div>
+          </div>
+        </div>
+
+        <label class="required-label" for="00N8c00000PAcBf">End Date:</label>
+        <input
+          required
+          id="end_date"
+          name="end_date"
+          size="12"
+          type="date"
+          tabindex="60"
+          onchange="recalculateDates(event)"
+        />
+        <input
+          id="00N8c00000PAcBf"
+          name="00N8c00000PAcBf"
+          size="12"
+          type="hidden"
+          tabindex="60"
+        />
+      </div>
+    </div>
+  </div>
+
+  <label for="00N8B000008O9hS"
+    >Tell us any other information that will make your vacation magical (
+    Budget, dates, places, activities, activity level, special needs or
+    interests )</label
+  >
+  <textarea
+    id="00N8B000008O9hS"
+    name="00N8B000008O9hS"
+    rows="3"
+    wrap="soft"
+  ></textarea>
+
+  <label for="00N8c00000dTKt1">How did you find us?</label>
+  <select
+    onchange="showById( 'other', event.target.value === 'Other' )"
+    type="text"
+    name="00N8c00000dTKt1"
+    list="hdyfu_list"
+  >
+    <option value="">--None--</option>
+    <option value="Google search">Google search</option>
+    <option value="Happy Gringo Blog">Happy Gringo Blog</option>
+    <option value="Social Media">Social Media</option>
+    <option value="Happy Gringo Email Newsletter">
+      Happy Gringo Email Newsletter
+    </option>
+    <option value="TripAdvisor">TripAdvisor</option>
+    <option value="Google ads">Google ads</option>
+    <option value="Other blog">Other blog</option>
+    <option value="Travel Guide">Travel Guide</option>
+    <option value="Friends or Family">Friends or Family</option>
+    <option value="Internet Search">Internet Search</option>
+    <option value="Recommendation from friend or family">
+      Recommendation from friend or family
+    </option>
+    <option value="Social Media Channels">Social Media Channels</option>
+    <option value="Other">Other</option>
+  </select>
+  <input
+    class="hidden"
+    id="other"
+    name="other"
+    type="text"
+    placeholder="Please insert your answer"
+  />
+
+  <div class="row">
+    <input
+      type="checkbox"
+      id="Receive_Newsletter"
+      name="Receive_Newsletter"
+    /><label
+      >Yes, I would like to receive a monthly newsletter and special oers from
+      Happy Gringo.</label
+    >
+  </div>
+  <input type="submit" name="submit" />
+  <span
+    >NOTE: If you've received no response from us after 1 business day, please
+    check your inbox's Spam folder. If still no luck, please contact
+    info@happygringo.com with a summary of your desired trip. Thanks!</span
+  >
+
+  <input
+    id="00N8c00000dTKsw"
+    name="00N8c00000dTKsw"
+    title="Country_Code"
+    type="hidden"
+  />
+
+  <input
+    id="00N8B000009eC3h"
+    name="00N8B000009eC3h"
+    title="FormData__c"
+    rows="3"
+    type="hidden"
+    wrap="soft"
+  />
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script>
+  fieldMapping = {
+    "00N8B000008ssXb": "Name__c",
+    "00N8c00000PAX7A": "Start_Date__c",
+    "00N8c00000PAcBf": "End_Date__c",
+    "00N8B000008O9hI": "Booking_Class__c",
+    "00N8c00000gutTj": "Total_Number_Pax__c",
+    "00N8B000008O9hS": "Observations__c",
+    "00N8c00000dTKt1": "How_did_you_find_us__c",
+    "00N8c00000dTKsw": "Country_Code__c",
+    "00N8B000009eC3h": "FormData__c",
+  };
+  const getFieldId = (name) => {
+    return Object.entries(fieldMapping).find((fm) => fm[1] === name)?.[0];
+  };
+
+  const input = document.querySelector("#phone");
+  window.intlTelInput(input, {
+    nationalMode: false,
+    preferredCountries: [
+      "us",
+      "uk",
+      "ca",
+      "au",
+      "de",
+      "ch",
+      "nl",
+      "fr",
+      "be",
+      "nz",
+    ],
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+  });
+
+  const flag = document.querySelector(".iti__flag-container");
+  const selectedflag = document.querySelector(".iti__selected-flag");
+  const countryCode = document.querySelector("input[title='Country_Code']");
+
+  const fillCountryCode = () => {
+    const countryPair = selectedflag.title.split(":");
+    const extentionNumber = countryPair[1].trim();
+    countryCode.value = countryPair[0];
+    input.value =
+      extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
+  };
+  fillCountryCode();
+
+  flag.addEventListener("click", (event) => {
+    fillCountryCode();
+  });
+
+  const handleSubmit = (event) => {
+    //event.preventDefault();
+    // Crea un objeto FormData a partir del formulario
+    const form = document.getElementById("salesforceform");
+    const inputData = document.getElementById("00N8B000009eC3h");
+
+    var formData = new FormData(form);
+
+    // Crea un objeto vacío para almacenar los datos
+    var datosJSON = {};
+
+    // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
+    formData.forEach(function (value, key) {
+      fieldMapping[key]
+        ? (datosJSON[fieldMapping[key]] = value)
+        : (datosJSON[key] = value);
+    });
+
+    // Convierte el objeto datosJSON a una cadena JSON
+    inputData.value = JSON.stringify(datosJSON);
+
+    return true;
+  };
+
+  const showById = (id, show) => {
+    const element = document.getElementById(id);
+    element.classList.toggle("hidden", !show);
+  };
+
+  //TRAVELERS
+  const showModal = (event, show = true) => {
+    const modal = document.getElementById("number-travelers-modal");
+    modal.classList.toggle("hidden", !show);
+  };
+  const blurModal = (event) => {
+    const modal = document.getElementById("number-travelers-modal");
+    if (isDescendant(modal, event.relatedTarget)) {
+      event.preventDefault();
+    } else {
+      showModal(event, false);
+    }
+  };
+  const updateTravelers = (event) => {
+    const totalNumberOfTravelersModal = document.getElementById(
+      "total-number-of-travelers"
+    );
+    const totalNumberOfTravelers = document.getElementById("00N8c00000gutTj");
+
+    const travelerInputs = document.querySelectorAll(
+      "#number-travelers-modal .number-travelers-input"
+    );
+
+    let total = 0;
+    for (const input of travelerInputs) {
+      if (input.value) {
+        total += parseInt(input.value) ?? 0;
+      }
+    }
+
+    totalNumberOfTravelersModal.value = total;
+
+    if (total > 0) {
+      totalNumberOfTravelers.value = "1";
+    }
+    if (total >= 2) {
+      totalNumberOfTravelers.value = "2 to 3";
+    }
+    if (total >= 4) {
+      totalNumberOfTravelers.value = "4 to 6";
+    }
+    if (total >= 7) {
+      totalNumberOfTravelers.value = "7 to 10";
+    }
+    if (total > 10) {
+      totalNumberOfTravelers.value = "10+";
+    }
+  };
+
+  //MAX CHECKBOX
+  const checkMaxSelected = (event) => {
+    const checkboxes = document.querySelectorAll("input[name='Type_of_Tour']");
+    selected = 0;
+    for (checkbox of checkboxes) {
+      if (checkbox.checked) {
+        selected++;
+      }
+    }
+    if (selected >= 3) {
+      for (checkbox of checkboxes) {
+        if (!checkbox.checked) {
+          checkbox.disabled = true;
+        }
+      }
+    } else {
+      for (checkbox of checkboxes) {
+        checkbox.disabled = false;
+      }
+    }
+  };
+  const checkboxes = document.querySelectorAll("input[name='Type_of_Tour']");
+  for (const checkbox of checkboxes) {
+    checkbox.addEventListener("click", checkMaxSelected);
+  }
+
+  //MIN DATES
+  const dates = document.querySelectorAll(".salesforceform input[type=date]");
+  for (const d of dates) {
+    d.min = new Date().toISOString().split("T")[0];
+  }
+
+  //RECALCULATE END DATE
+  const recalculateDates = (event) => {
+    const startDate = document.getElementById("start_date");
+    const endDate = document.getElementById("end_date");
+    const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
+    const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
+
+    Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
+      "es-EC",
+      {
+        timeZone: "UTC",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }
+    );
+
+    End_Date__c.value = new Date(Date.parse(endDate.value)).toLocaleString(
+      "es-EC",
+      {
+        timeZone: "UTC",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }
+    );
+    console.log(startDate.value, Start_Date__c.value, End_Date__c.value);
+  };
+
+  Date.prototype.addDays = function (days) {
+    const date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+  const onlyNumbers = (event) => {
+    filtered = event.target.value.replace(/[^\d.+\s]/g, "");
+    if (event.target.value !== filtered) event.target.value = filtered;
+  };
+</script>

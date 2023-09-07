@@ -1,0 +1,549 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+/>
+<style>
+  .required-label:before {
+    content: "*";
+    color: red;
+  }
+
+  .salesforceform .container {
+    padding: 5px;
+  }
+
+  .salesforceform .row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .salesforceform .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .salesforceform a {
+    cursor: pointer;
+  }
+
+  .salesforceform input[type="text"],
+  .salesforceform input[type="tel"],
+  .salesforceform input[type="date"],
+  .salesforceform textarea,
+  .salesforceform select {
+    width: 100%;
+  }
+
+  .salesforceform .subtitle {
+    background-color: red;
+    color: white;
+    text-align: center;
+  }
+
+  .salesforceform .submit {
+    border-style: none;
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    width: 70px;
+    font-size: small;
+  }
+
+  /*Travelers Style*/
+  .salesforceform #number-travelers-container {
+    position: relative;
+  }
+
+  .salesforceform #number-travelers-modal {
+    border: 1px solid #dbdbdb;
+    position: absolute;
+    padding: 10px;
+    margin-top: 3px;
+    background-color: white;
+    width: 90%;
+    gap: 4px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 1000;
+  }
+  .salesforceform input[type="number"].number-travelers-input {
+    width: 60px;
+  }
+  .salesforceform input[type="number"].number-travelers-total {
+    width: 60px;
+  }
+
+  /*Hidden class*/
+  .hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const nextForm = (event) => {
+    event.preventDefault();
+    const currentform = event.target;
+    const submitform = document.getElementById("submitform");
+    fields = currentform.querySelectorAll("input,select,textArea");
+    for (f of fields) {
+      let copied = submitform.querySelector(`input[name='${f.name}']`);
+      if (!copied) {
+        copied = document.createElement("input");
+        submitform.appendChild(copied);
+      }
+      copied.name = f.name;
+      copied.value = f.value;
+      copied.type = "hidden";
+    }
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+    return false;
+  };
+
+  const previous = (event) => {
+    event.preventDefault();
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page1").classList.remove("hidden");
+  };
+</script>
+
+<form onsubmit="nextForm(event)" class="salesforceform" method="POST">
+  <h1>INSIDE LAND TOURS</h1>
+  <div id="page1">
+    <div class="subtitle">
+      <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+
+    <input
+      name="Lead Source"
+      type="hidden"
+      value="WEBSITE FORM - INSIDE LAND TOURS"
+    />
+
+    <input name="oid" type="hidden" value="00D8B0000008ibk" />
+    <input
+      name="retURL"
+      type="hidden"
+      value="https://wordpress-314336-3661924.cloudwaysapps.com/thank-you/"
+    />
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label class="required-label" for="00N8c00000PAX7A"
+            >Start Date:</label
+          >
+          <input
+            required
+            id="start_date"
+            name="start_date"
+            size="12"
+            type="date"
+            tabindex="50"
+            onchange="recalculateDates(event)"
+          />
+          <input
+            id="00N8c00000PAX7A"
+            name="00N8c00000PAX7A"
+            size="12"
+            type="hidden"
+            tabindex="50"
+            hidden
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="00N8B000008O9hI"
+            >Preferred Booking Class:</label
+          >
+          <select
+            required
+            id="00N8B000008O9hI"
+            title="Booking Class"
+            name="00N8B000008O9hI"
+          >
+            <option value="">--None--</option>
+            <option value="Backpacker Gringo (Budget)">
+              Backpacker Gringo (Budget)
+            </option>
+            <option value="Standard Gringo (2+3 stars)">
+              Standard Gringo (2+3 stars)
+            </option>
+            <option value="Comfortable Gringo (3+4 stars)">
+              Comfortable Gringo (3+4 stars)
+            </option>
+            <option value="Luxury Gringo (5 stars)">
+              Luxury Gringo (5 stars)
+            </option>
+            <option value="Super Deluxe Gringo (The very finest)">
+              Super Deluxe Gringo (The very finest)
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <div id="number-travelers-container">
+            <label class="required-label" for="00N8c00000gutTj"
+              >Number of travelers:</label
+            >
+            <input
+              required
+              id="00N8c00000gutTj"
+              title="Total Number Pax"
+              name="00N8c00000gutTj"
+              tabindex="40"
+              type="text"
+              onfocus="showModal(event)"
+              onclick="showModal(event)"
+            />
+
+            <div
+              id="number-travelers-modal"
+              onpointerleave="showModal(event,false)"
+              class="col hidden"
+            >
+              <div class="row">
+                <input
+                  id="0-4"
+                  name="travelers_0-4"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="0-4">0 - 4 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="5-11"
+                  name="travelers_5-11"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="5-11">5 - 11 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="12-20"
+                  name="travelers_12-20"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="12-20">12 - 20 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="21-29"
+                  name="travelers_21-29"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="21-29">21 - 29 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="30-44"
+                  name="travelers_30-44"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="30-44">30 - 44 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="45-64"
+                  name="travelers_45-64"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="45-64">45 - 64 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="65+"
+                  name="travelers_65+"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                />
+                <label for="65+">65+ Years</label>
+              </div>
+              <hr />
+              <div class="row">
+                <label for="total-number-of-travelers"
+                  >Total Number of Passengers</label
+                >
+                <input
+                  readonly
+                  id="total-number-of-travelers"
+                  type="number"
+                  class="number-travelers-total"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <center>
+      <button class="submit">Book Now</button>
+    </center>
+  </div>
+</form>
+<form
+  id="submitform"
+  class="salesforceform"
+  action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+  method="POST"
+  onsubmit="handleSubmit(event)"
+>
+  <div id="page2" class="hidden">
+    <div class="subtitle">
+      <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label class="required-label" for="00N8B000008ssXb"
+            >First &amp; Last Name:</label
+          >
+          <input
+            required
+            id="00N8B000008ssXb"
+            maxlength="255"
+            name="00N8B000008ssXb"
+            size="20"
+            type="text"
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="email">Email</label>
+          <input id="email" maxlength="80" name="email" size="20" type="text" />
+        </div>
+        <div class="col">
+          <label class="required-label" for="phone">Phone:</label>
+          <input
+            id="phone"
+            maxlength="40"
+            name="phone"
+            size="20"
+            type="tel"
+            oninput="onlyNumbers(event)"
+          />
+        </div>
+      </div>
+    </div>
+    <center>
+      <button class="submit">SEND</button>
+    </center>
+    <a onclick="previous(event)">PREVIOUS</a>
+  </div>
+
+  <input
+    id="00N8c00000dTKsw"
+    name="00N8c00000dTKsw"
+    title="Country_Code"
+    type="hidden"
+  />
+
+  <input
+    id="00N8B000009eC3h"
+    name="00N8B000009eC3h"
+    title="FormData__c"
+    rows="3"
+    type="hidden"
+    wrap="soft"
+  />
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script>
+  fieldMapping = {
+    "00N8B000008ssXb": "Name__c",
+    "00N8c00000PAX7A": "Start_Date__c",
+    "00N8c00000PAcBf": "End_Date__c",
+    "00N8B000008O9hI": "Booking_Class__c",
+    "00N8c00000gutTj": "Total_Number_Pax__c",
+    "00N8B000008O9hS": "Observations__c",
+    "00N8c00000dTKt1": "How_did_you_find_us__c",
+    "00N8c00000dTKsw": "Country_Code__c",
+    "00N8B000009eC3h": "FormData__c",
+  };
+  const getFieldId = (name) => {
+    return Object.entries(fieldMapping).find((fm) => fm[1] === name)?.[0];
+  };
+
+  const handleSubmit = (event) => {
+    // event.preventDefault();
+    // Crea un objeto FormData a partir del formulario
+    const form = document.getElementById("submitform");
+    const inputData = document.getElementById("00N8B000009eC3h");
+
+    var formData = new FormData(form);
+
+    // Crea un objeto vacío para almacenar los datos
+    var datosJSON = {};
+
+    // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
+    formData.forEach(function (value, key) {
+      fieldMapping[key]
+        ? (datosJSON[fieldMapping[key]] = value)
+        : (datosJSON[key] = value);
+    });
+
+    // Convierte el objeto datosJSON a una cadena JSON
+    inputData.value = JSON.stringify(datosJSON);
+
+    return true;
+  };
+
+  const input = document.querySelector("#phone");
+  window.intlTelInput(input, {
+    nationalMode: false,
+    preferredCountries: [
+      "us",
+      "uk",
+      "ca",
+      "au",
+      "de",
+      "ch",
+      "nl",
+      "fr",
+      "be",
+      "nz",
+    ],
+    utilsScript:
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+  });
+
+  const flag = document.querySelector(".iti__flag-container");
+  const selectedflag = document.querySelector(".iti__selected-flag");
+
+  const fillCountryCode = () => {
+    const country_code = selectedflag.title.split(":")[1].trim();
+    input.value =
+      country_code + " " + input.value.replace(country_code, "").trim();
+  };
+  fillCountryCode();
+
+  flag.addEventListener("click", (event) => {
+    fillCountryCode();
+  });
+
+  const showById = (id, show) => {
+    const element = document.getElementById(id);
+    element.classList.toggle("hidden", !show);
+  };
+
+  //TRAVELERS
+  const showModal = (event, show = true) => {
+    const modal = document.getElementById("number-travelers-modal");
+    modal.classList.toggle("hidden", !show);
+  };
+  const blurModal = (event) => {
+    const modal = document.getElementById("number-travelers-modal");
+    if (isDescendant(modal, event.relatedTarget)) {
+      event.preventDefault();
+    } else {
+      showModal(event, false);
+    }
+  };
+
+  const updateTravelers = (event) => {
+    const totalNumberOfTravelersModal = document.getElementById(
+      "total-number-of-travelers"
+    );
+    const totalNumberOfTravelers = document.getElementById("00N8c00000gutTj");
+
+    const travelerInputs = document.querySelectorAll(
+      "#number-travelers-modal .number-travelers-input"
+    );
+
+    let total = 0;
+    for (const input of travelerInputs) {
+      if (input.value) {
+        total += parseInt(input.value) ?? 0;
+      }
+    }
+
+    totalNumberOfTravelersModal.value = total;
+
+    if (total > 0) {
+      totalNumberOfTravelers.value = "1";
+    }
+    if (total >= 2) {
+      totalNumberOfTravelers.value = "2 to 3";
+    }
+    if (total >= 4) {
+      totalNumberOfTravelers.value = "4 to 6";
+    }
+    if (total >= 7) {
+      totalNumberOfTravelers.value = "7 to 10";
+    }
+    if (total > 10) {
+      totalNumberOfTravelers.value = "10+";
+    }
+  };
+
+  //MIN DATES
+  const dates = document.querySelectorAll(".salesforceform input[type=date]");
+  for (const d of dates) {
+    d.min = new Date().toISOString().split("T")[0];
+  }
+
+  //RECALCULATE END DATE
+  const recalculateDates = (event) => {
+    const startDate = document.getElementById("start_date");
+    const endDate = document.getElementById("end_date");
+    const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
+    const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
+
+    Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
+      "es-EC",
+      {
+        timeZone: "UTC",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }
+    );
+
+    /*End_Date__c.value = new Date(Date.parse(endDate.value)).toLocaleString(
+      "es-EC",
+      {
+        timeZone: "UTC",
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+      }
+    );
+    console.log(startDate.value, Start_Date__c.value, End_Date__c.value);*/
+  };
+
+  Date.prototype.addDays = function (days) {
+    const date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
+
+  const onlyNumbers = (event) => {
+    filtered = event.target.value.replace(/[^\d.+\s]/g, "");
+    if (event.target.value !== filtered) event.target.value = filtered;
+  };
+</script>
