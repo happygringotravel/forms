@@ -31,13 +31,14 @@
 
   .salesforceform .row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
   }
 
-  @media screen and (min-width: 800px) {
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
     .salesforceform .row {
-      flex-direction: row;
+      flex-direction: column;
     }
   }
 
@@ -55,6 +56,16 @@
   /*Travelers Style*/
   .salesforceform #number-travelers-container {
     position: relative;
+  }
+
+  .salesforceform #number-travelers-container #number-travelers-modal {
+    display: none;
+  }
+
+  .salesforceform
+    #number-travelers-container:focus-within
+    #number-travelers-modal {
+    display: block;
   }
 
   .salesforceform #number-travelers-modal {
@@ -183,14 +194,13 @@
             name="00N8c00000gutTj"
             tabindex="40"
             type="text"
-            onfocus="showModal(event)"
-            onclick="showModal(event)"
           />
 
           <div
             id="number-travelers-modal"
-            onpointerleave="showModal(event,false)"
-            class="col hidden"
+            class="col"
+            tabindex="0"
+            onpointerleave="removeFocus(event)"
           >
             <div class="row">
               <input
@@ -200,6 +210,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="41"
               />
               <label for="0-4">0 - 4 Years</label>
             </div>
@@ -211,6 +222,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="42"
               />
               <label for="5-11">5 - 11 Years</label>
             </div>
@@ -222,6 +234,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="43"
               />
               <label for="12-20">12 - 20 Years</label>
             </div>
@@ -233,6 +246,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="44"
               />
               <label for="21-29">21 - 29 Years</label>
             </div>
@@ -244,6 +258,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="45"
               />
               <label for="30-44">30 - 44 Years</label>
             </div>
@@ -255,6 +270,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="45"
               />
               <label for="45-64">45 - 64 Years</label>
             </div>
@@ -266,6 +282,7 @@
                 type="number"
                 class="number-travelers-input"
                 min="0"
+                tabindex="47"
               />
               <label for="65+">65+ Years</label>
             </div>
@@ -313,7 +330,7 @@
         >
           <option value="">--None--</option>
           <option value="Backpacker Gringo (Budget)">
-            Backpacker Gringo (Budget)
+            Backpacker (Budget)
           </option>
           <option value="Standard Gringo (2+3 stars)">
             Standard Gringo (2+3 stars)
@@ -625,17 +642,10 @@
   };
 
   //TRAVELERS
-  const showModal = (event, show = true) => {
-    const modal = document.getElementById("number-travelers-modal");
-    modal.classList.toggle("hidden", !show);
-  };
-  const blurModal = (event) => {
-    const modal = document.getElementById("number-travelers-modal");
-    if (isDescendant(modal, event.relatedTarget)) {
-      event.preventDefault();
-    } else {
-      showModal(event, false);
-    }
+  const removeFocus = (event) => {
+    if (event.pointerType != "mouse") return;
+    console.log(event);
+    document.activeElement.blur();
   };
 
   const updateTravelers = (event) => {
@@ -657,21 +667,7 @@
 
     totalNumberOfTravelersModal.value = total;
 
-    if (total > 0) {
-      totalNumberOfTravelers.value = "1";
-    }
-    if (total >= 2) {
-      totalNumberOfTravelers.value = "2 to 3";
-    }
-    if (total >= 4) {
-      totalNumberOfTravelers.value = "4 to 6";
-    }
-    if (total >= 7) {
-      totalNumberOfTravelers.value = "7 to 10";
-    }
-    if (total > 10) {
-      totalNumberOfTravelers.value = "10+";
-    }
+    totalNumberOfTravelers.value = total;
   };
 
   //MAX CHECKBOX
