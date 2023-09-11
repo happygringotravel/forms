@@ -14,13 +14,14 @@
 
   .salesforceform .row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
   }
 
-  @media screen and (min-width: 800px) {
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
     .salesforceform .row {
-      flex-direction: row;
+      flex-direction: column;
     }
   }
 
@@ -80,6 +81,7 @@
 
   /*Travelers Style*/
   .salesforceform #number-travelers-container {
+    display: contents;
     position: relative;
   }
   .salesforceform #number-travelers-container #number-travelers-modal {
@@ -115,6 +117,10 @@
   /*Hidden class*/
   .hidden {
     display: none !important;
+  }
+
+  .iti {
+    margin-bottom: 20px;
   }
 </style>
 
