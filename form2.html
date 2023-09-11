@@ -52,8 +52,17 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 
+  /*Travelers Style*/
   .salesforceform #number-travelers-container {
     position: relative;
+  }
+  .salesforceform #number-travelers-container #number-travelers-modal {
+    display: none;
+  }
+  .salesforceform
+    #number-travelers-container:focus-within
+    #number-travelers-modal {
+    display: block;
   }
 
   .salesforceform #number-travelers-modal {
@@ -102,7 +111,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col" style="text-align: left; vertical-align: top">
+      <div class="col">
         <label class="required-label" for="00N8B000008ssXb"
           >First & Last Name:</label
         >
@@ -114,11 +123,11 @@
           size="20"
           type="text"
           tabindex="10"
+          placeholder="-First & Last Name-"
         />
 
-        <label class="required-label" for="phone">Phone:</label>
+        <label for="phone">Phone:</label>
         <input
-          required
           id="phone"
           maxlength="40"
           name="phone"
@@ -126,9 +135,145 @@
           type="tel"
           tabindex="30"
           oninput="onlyNumbers(event)"
+          onfocus="fillCountryCode(event)"
         />
         <div style="width: 100%; height: 20px"></div>
+      </div>
+      <div class="col" style="text-align: left; vertical-align: top">
+        <label class="required-label" for="email">Email</label>
+        <input
+          required
+          id="email"
+          maxlength="80"
+          name="email"
+          size="20"
+          type="text"
+          tabindex="20"
+          placeholder="-Email-"
+        />
 
+        <div id="number-travelers-container">
+          <label class="required-label" for="00N8c00000gutTj"
+            >Number of travelers:</label
+          >
+          <input
+            required
+            id="00N8c00000gutTj"
+            title="Total Number Pax"
+            name="00N8c00000gutTj"
+            tabindex="40"
+            type="text"
+            placeholder="-Select # of Travelers-"
+          />
+
+          <div
+            id="number-travelers-modal"
+            class="col"
+            tabindex="0"
+            onpointerleave="removeFocus(event)"
+          >
+            <div class="row">
+              <input
+                id="0-4"
+                name="travelers_0-4"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="41"
+              />
+              <label for="0-4">0 - 4 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="5-11"
+                name="travelers_5-11"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="42"
+              />
+              <label for="5-11">5 - 11 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="12-20"
+                name="travelers_12-20"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="43"
+              />
+              <label for="12-20">12 - 20 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="21-29"
+                name="travelers_21-29"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="44"
+              />
+              <label for="21-29">21 - 29 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="30-44"
+                name="travelers_30-44"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="45"
+              />
+              <label for="30-44">30 - 44 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="45-64"
+                name="travelers_45-64"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="45"
+              />
+              <label for="45-64">45 - 64 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="65+"
+                name="travelers_65+"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="47"
+              />
+              <label for="65+">65+ Years</label>
+            </div>
+            <hr />
+            <div class="row">
+              <label for="total-number-of-travelers"
+                >Total Number of Passengers</label
+              >
+              <input
+                readonly
+                id="total-number-of-travelers"
+                type="number"
+                class="number-travelers-total"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <label class="required-label" for="00N8c00000PAX7A">Start Date:</label>
         <input
           required
@@ -148,130 +293,7 @@
           hidden
         />
       </div>
-      <div class="col" style="text-align: left; vertical-align: top">
-        <label class="required-label" for="email">Email</label>
-        <input
-          required
-          id="email"
-          maxlength="80"
-          name="email"
-          size="20"
-          type="text"
-          tabindex="20"
-        />
-
-        <div id="number-travelers-container">
-          <label class="required-label" for="00N8c00000gutTj"
-            >Number of travelers:</label
-          >
-          <input
-            required
-            id="00N8c00000gutTj"
-            title="Total Number Pax"
-            name="00N8c00000gutTj"
-            tabindex="40"
-            type="text"
-            onfocus="showModal(event)"
-            onclick="showModal(event)"
-          />
-
-          <div
-            id="number-travelers-modal"
-            onpointerleave="showModal(event,false)"
-            class="col hidden"
-          >
-            <div class="row">
-              <input
-                id="0-4"
-                name="travelers_0-4"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="0-4">0 - 4 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="5-11"
-                name="travelers_5-11"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="5-11">5 - 11 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="12-20"
-                name="travelers_12-20"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="12-20">12 - 20 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="21-29"
-                name="travelers_21-29"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="21-29">21 - 29 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="30-44"
-                name="travelers_30-44"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="30-44">30 - 44 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="45-64"
-                name="travelers_45-64"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="45-64">45 - 64 Years</label>
-            </div>
-            <div class="row">
-              <input
-                id="65+"
-                name="travelers_65+"
-                onchange="updateTravelers(event)"
-                type="number"
-                class="number-travelers-input"
-                min="0"
-              />
-              <label for="65+">65+ Years</label>
-            </div>
-            <hr />
-            <div class="row">
-              <label for="total-number-of-travelers"
-                >Total Number of Passengers</label
-              >
-              <input
-                readonly
-                id="total-number-of-travelers"
-                type="number"
-                class="number-travelers-total"
-              />
-            </div>
-          </div>
-        </div>
-
+      <div class="col">
         <label class="required-label" for="00N8c00000PAcBf">End Date:</label>
         <input
           required
@@ -312,6 +334,7 @@
     name="00N8c00000dTKt1"
     list="hdyfu_list"
   >
+    <option value="" disabled selected>-Select an option-</option>
     <option value="Google search">Google search</option>
     <option value="Bing">Bing</option>
     <option value="Happy Gringo Blog">Happy Gringo Blog</option>
@@ -349,7 +372,7 @@
       Happy Gringo.</label
     >
   </div>
-  <input type="submit" name="submit" />
+  <input type="submit" name="submit" value="Submit" />
   <span
     >NOTE: If you've received no response from us after 1 business day, please
     check your inbox's Spam folder. If still no luck, please contact
@@ -420,7 +443,6 @@
     input.value =
       extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
-  fillCountryCode();
 
   flag.addEventListener("click", (event) => {
     fillCountryCode();
@@ -456,18 +478,12 @@
   };
 
   //TRAVELERS
-  const showModal = (event, show = true) => {
-    const modal = document.getElementById("number-travelers-modal");
-    modal.classList.toggle("hidden", !show);
+  const removeFocus = (event) => {
+    if (event.pointerType != "mouse") return;
+    console.log(event);
+    document.activeElement.blur();
   };
-  const blurModal = (event) => {
-    const modal = document.getElementById("number-travelers-modal");
-    if (isDescendant(modal, event.relatedTarget)) {
-      event.preventDefault();
-    } else {
-      showModal(event, false);
-    }
-  };
+
   const updateTravelers = (event) => {
     const totalNumberOfTravelersModal = document.getElementById(
       "total-number-of-travelers"
@@ -487,21 +503,7 @@
 
     totalNumberOfTravelersModal.value = total;
 
-    if (total > 0) {
-      totalNumberOfTravelers.value = "1";
-    }
-    if (total >= 2) {
-      totalNumberOfTravelers.value = "2 to 3";
-    }
-    if (total >= 4) {
-      totalNumberOfTravelers.value = "4 to 6";
-    }
-    if (total >= 7) {
-      totalNumberOfTravelers.value = "7 to 10";
-    }
-    if (total > 10) {
-      totalNumberOfTravelers.value = "10+";
-    }
+    totalNumberOfTravelers.value = total;
   };
 
   //MAX CHECKBOX
