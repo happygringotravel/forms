@@ -111,7 +111,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col" style="text-align: left; vertical-align: top">
+      <div class="col">
         <label class="required-label" for="00N8B000008ssXb"
           >First & Last Name:</label
         >
@@ -123,6 +123,7 @@
           size="20"
           type="text"
           tabindex="10"
+          placeholder="-First & Last Name-"
         />
 
         <label for="phone">Phone:</label>
@@ -134,27 +135,9 @@
           type="tel"
           tabindex="30"
           oninput="onlyNumbers(event)"
+          onfocus="fillCountryCode(event)"
         />
         <div style="width: 100%; height: 20px"></div>
-
-        <label class="required-label" for="00N8c00000PAX7A">Start Date:</label>
-        <input
-          required
-          id="start_date"
-          name="start_date"
-          size="12"
-          type="date"
-          tabindex="50"
-          onchange="recalculateDates(event)"
-        />
-        <input
-          id="00N8c00000PAX7A"
-          name="00N8c00000PAX7A"
-          size="12"
-          type="hidden"
-          tabindex="50"
-          hidden
-        />
       </div>
       <div class="col" style="text-align: left; vertical-align: top">
         <label class="required-label" for="email">Email</label>
@@ -166,6 +149,7 @@
           size="20"
           type="text"
           tabindex="20"
+          placeholder="-Email-"
         />
 
         <div id="number-travelers-container">
@@ -179,6 +163,7 @@
             name="00N8c00000gutTj"
             tabindex="40"
             type="text"
+            placeholder="-Select # of Travelers-"
           />
 
           <div
@@ -285,7 +270,30 @@
             </div>
           </div>
         </div>
-
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="required-label" for="00N8c00000PAX7A">Start Date:</label>
+        <input
+          required
+          id="start_date"
+          name="start_date"
+          size="12"
+          type="date"
+          tabindex="50"
+          onchange="recalculateDates(event)"
+        />
+        <input
+          id="00N8c00000PAX7A"
+          name="00N8c00000PAX7A"
+          size="12"
+          type="hidden"
+          tabindex="50"
+          hidden
+        />
+      </div>
+      <div class="col">
         <label class="required-label" for="00N8c00000PAcBf">End Date:</label>
         <input
           required
@@ -326,6 +334,7 @@
     name="00N8c00000dTKt1"
     list="hdyfu_list"
   >
+    <option value="" disabled selected>-Select an option-</option>
     <option value="Google search">Google search</option>
     <option value="Bing">Bing</option>
     <option value="Happy Gringo Blog">Happy Gringo Blog</option>
@@ -434,7 +443,6 @@
     input.value =
       extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
-  fillCountryCode();
 
   flag.addEventListener("click", (event) => {
     fillCountryCode();

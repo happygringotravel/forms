@@ -183,7 +183,7 @@
             title="Booking Class"
             name="00N8B000008O9hI"
           >
-            <option value="">--None--</option>
+            <option value="" disabled selected>-Select an option-</option>
             <option value="Backpacker Gringo (Budget)">
               Backpacker (Budget)
             </option>
@@ -210,6 +210,7 @@
               name="00N8c00000gutTj"
               tabindex="40"
               type="text"
+              placeholder="-Select # of Travelers-"
             />
 
             <div
@@ -321,7 +322,7 @@
     </div>
 
     <center>
-      <button class="submit">Book Now</button>
+      <button class="submit">BOOK NOW</button>
     </center>
   </div>
 </form>
@@ -351,11 +352,19 @@
             name="00N8B000008ssXb"
             size="20"
             type="text"
+            placeholder="-First & Last Name-"
           />
         </div>
         <div class="col">
           <label class="required-label" for="email">Email</label>
-          <input id="email" maxlength="80" name="email" size="20" type="text" />
+          <input
+            id="email"
+            maxlength="80"
+            name="email"
+            size="20"
+            type="text"
+            placeholder="-Email-"
+          />
         </div>
         <div class="col">
           <label for="phone">Phone:</label>
@@ -366,6 +375,7 @@
             size="20"
             type="tel"
             oninput="onlyNumbers(event)"
+            onfocus="fillCountryCode(event)"
           />
         </div>
       </div>
@@ -461,7 +471,6 @@
     input.value =
       country_code + " " + input.value.replace(country_code, "").trim();
   };
-  fillCountryCode();
 
   flag.addEventListener("click", (event) => {
     fillCountryCode();

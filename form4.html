@@ -198,6 +198,7 @@
             size="12"
             type="hidden"
             tabindex="60"
+            placeholder="-Number of Days-"
           />
           <input
             required
@@ -210,7 +211,7 @@
 
         <div class="col">
           <label class="required-label" for="00N8B000008O9h8"
-            >Type of Tour:</label
+            >Type of Land Tour:</label
           ><select
             required
             id="Type_of_Land_Tour"
@@ -225,7 +226,7 @@
               Galapagos Activity Tours
             </option>
             <option value="Short one island extension">
-              Short one island extension
+              Short One Island Extension
             </option>
             <option value="All-Inclusive Hotel Packages">
               All-Inclusive Hotel Packages
@@ -242,7 +243,7 @@
             title="Booking Class"
             name="00N8B000008O9hI"
           >
-            <option value="">- Select an option -</option>
+            <option value="" disabled selected>-Select an option-</option>
             <option value="Backpacker Gringo (Budget)">
               Backpacker Gringo (Budget)
             </option>
@@ -261,7 +262,7 @@
     </div>
 
     <center>
-      <button class="submit">Request</button>
+      <button class="submit">REQUEST A FREE QUOTE</button>
     </center>
   </div>
 </form>
@@ -291,6 +292,7 @@
             name="00N8B000008ssXb"
             size="20"
             type="text"
+            placeholder="-First & Last Name-"
           />
         </div>
         <div class="col">
@@ -305,6 +307,7 @@
               name="00N8c00000gutTj"
               tabindex="40"
               type="text"
+              placeholder="-Select # of Travelers-"
             />
 
             <div
@@ -421,6 +424,7 @@
             size="20"
             type="tel"
             oninput="onlyNumbers(event)"
+            onfocus="fillCountryCode(event)"
           />
         </div>
         <div class="col">
@@ -432,6 +436,7 @@
             name="email"
             size="20"
             type="text"
+            placeholder="-Email-"
           />
         </div>
       </div>
@@ -448,7 +453,7 @@
       wrap="soft"
     ></textarea>
     <center>
-      <button class="submit">SEND</button>
+      <button class="submit">BOOK NOW</button>
     </center>
     <a onclick="previous(event)">PREVIOUS</a>
   </div>
@@ -539,7 +544,6 @@
     input.value =
       country_code + " " + input.value.replace(country_code, "").trim();
   };
-  fillCountryCode();
 
   flag.addEventListener("click", (event) => {
     fillCountryCode();
