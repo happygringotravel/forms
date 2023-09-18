@@ -545,11 +545,14 @@
 
   const flag = document.querySelector(".iti__flag-container");
   const selectedflag = document.querySelector(".iti__selected-flag");
+  const countryCode = document.querySelector("input[title='Country_Code']");
 
   const fillCountryCode = () => {
-    const country_code = selectedflag.title.split(":")[1].trim();
+    const countryPair = selectedflag.title.split(":");
+    const extentionNumber = countryPair[1].trim();
+    countryCode.value = countryPair[0].replace(/ *\([^)]*\) */g, "").trim();
     input.value =
-      country_code + " " + input.value.replace(country_code, "").trim();
+      extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
 
   flag.addEventListener("click", (event) => {
