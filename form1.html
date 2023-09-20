@@ -620,7 +620,7 @@
   const fillCountryCode = () => {
     const countryPair = selectedflag.title.split(":");
     const extentionNumber = countryPair[1].trim();
-    countryCode.value = countryPair[0].replace(/ *\([^)]*\) */g, "").trim();
+    countryCode.value = countryPair[0];
     input.value =
       extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
@@ -725,6 +725,11 @@
     const endDate = document.getElementById("end_date");
     const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
     const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
+
+    if (startDate.value !== "") {
+      console.log(startDate.value);
+      endDate.setAttribute("min", startDate.value);
+    }
 
     Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
       "es-EC",

@@ -532,6 +532,11 @@
     const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
     const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
 
+    if (startDate.value !== "") {
+      console.log(startDate.value);
+      endDate.setAttribute("min", startDate.value);
+    }
+
     Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
       "es-EC",
       {
