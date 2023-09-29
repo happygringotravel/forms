@@ -466,9 +466,18 @@
 
     // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
     formData.forEach(function (value, key) {
-      fieldMapping[key]
-        ? (datosJSON[fieldMapping[key]] = value)
-        : (datosJSON[key] = value);
+      if (fieldMapping[key]) {
+        datosJSON[fieldMapping[key]] = value;
+      } else {
+        if (datosJSON[key]) {
+          if (!Array.isArray(datosJSON[key])) {
+            datosJSON[key] = [datosJSON[key]];
+          }
+          datosJSON[key].push(value);
+        } else {
+          datosJSON[key] = value;
+        }
+      }
     });
 
     // Convierte el objeto datosJSON a una cadena JSON
