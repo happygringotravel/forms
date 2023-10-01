@@ -473,9 +473,9 @@
   />
 
   <input
-    id="00N8B000009eC3h"
-    name="00N8B000009eC3h"
-    title="FormData__c"
+    id="00N8B000008O9hN"
+    name="00N8B000008O9hN"
+    title="Travel_Request__c"
     rows="3"
     type="hidden"
     wrap="soft"
@@ -492,7 +492,7 @@
     "00N8B000008O9hS": "Observations__c",
     "00N8c00000dTKt1": "How_did_you_find_us__c",
     "00N8c00000dTKsw": "Country_Code__c",
-    "00N8B000009eC3h": "FormData__c",
+    "00N8B000008O9hN": "Travel_Request__c",
   };
 
   const getFieldId = (name) => {
@@ -502,8 +502,8 @@
   const handleSubmit = (event) => {
     //event.preventDefault();
     // Crea un objeto FormData a partir del formulario
-    const form = document.getElementById("submitform");
-    const inputData = document.getElementById(getFieldId("FormData__c"));
+    const form = document.getElementById("salesforceform");
+    const inputData = document.getElementById(getFieldId("Travel_Request__c"));
 
     var formData = new FormData(form);
 
@@ -512,6 +512,9 @@
 
     // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
     formData.forEach(function (value, key) {
+      if (!value) {
+        return;
+      }
       if (fieldMapping[key]) {
         datosJSON[fieldMapping[key]] = value;
       } else {
@@ -527,7 +530,7 @@
     });
 
     // Convierte el objeto datosJSON a una cadena JSON
-    inputData.value = JSON.stringify(datosJSON);
+    inputData.value = JSON.stringify(datosJSON, null, 4);
 
     return true;
   };
