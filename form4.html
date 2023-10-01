@@ -128,7 +128,7 @@
   const nextForm = (event) => {
     event.preventDefault();
     const currentform = event.target;
-    const submitform = document.getElementById("submitform");
+    const submitform = document.getElementById("salesforceform");
     fields = currentform.querySelectorAll("input,select,textArea");
     for (f of fields) {
       const existent = submitform.querySelector(`input[name='${f.name}']`);
@@ -274,7 +274,7 @@
   </div>
 </form>
 <form
-  id="submitform"
+  id="salesforceform"
   class="salesforceform"
   action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
   method="POST"
