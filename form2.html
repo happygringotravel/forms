@@ -108,6 +108,7 @@
   />
 
   <input name="oid" type="hidden" value="00D8B0000008ibk" />
+  <input id="url" name="url" type="hidden" />
   <input
     name="retURL"
     type="hidden"
@@ -117,12 +118,14 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <label class="required-label" for="last_name">First & Last Name:</label>
+        <label class="required-label" for="00N8B00000AhCQM"
+          >First & Last Name:</label
+        >
         <input
           required
-          id="last_name"
+          id="00N8B00000AhCQM"
           maxlength="255"
-          name="last_name"
+          name="00N8B00000AhCQM"
           size="20"
           type="text"
           tabindex="10"
@@ -398,6 +401,7 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
   fieldMapping = {
+    "00N8B00000AhCQM": "Full_Name__c",
     "00N8c00000PAX7A": "Start_Date__c",
     "00N8c00000PAcBf": "End_Date__c",
     "00N8B000008O9hI": "Booking_Class__c",
@@ -407,6 +411,10 @@
     "00N8c00000dTKsw": "Country_Code__c",
     "00N8B000008O9hN": "Travel_Request__c",
   };
+
+  //fill url
+  document.getElementById("url").value = window.location.href;
+
   const getFieldId = (name) => {
     return Object.entries(fieldMapping).find((fm) => fm[1] === name)?.[0];
   };
