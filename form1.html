@@ -622,7 +622,7 @@
   const fillCountryCode = () => {
     const countryPair = selectedflag.title.split(":");
     const extentionNumber = countryPair[1].trim();
-    countryCode.value = countryPair[0];
+    countryCode.value = countryPair[0].replace(/ *\([^)]*\) */g, "").trim();
     input.value =
       extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
