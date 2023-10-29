@@ -1,28 +1,12 @@
 <html>
   <body>
-    <div id="externa_form"></div>
+    <div id="external_form"></div>
+    <script src="utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <script>
-      fetch("somePage.html")
-        .then(function (response) {
-          // When the page is loaded convert it to text
-          return response.text();
-        })
-        .then(function (html) {
-          // Initialize the DOM parser
-          var parser = new DOMParser();
-
-          // Parse the text
-          var doc = parser.parseFromString(html, "text/html");
-
-          // You can now even select part of that html as you would in the regular DOM
-          // Example:
-          // var docArticle = doc.querySelector('article').innerHTML;
-
-          console.log(doc);
-        })
-        .catch(function (err) {
-          console.log("Failed to fetch page: ", err);
-        });
+      loadHtml("https://happygringotravel.github.io/forms/form01.html", () => {
+        loadScript("https://happygringotravel.github.io/forms/form.js");
+      });
     </script>
   </body>
 </html>

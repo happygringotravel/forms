@@ -1,0 +1,487 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://happygringotravel.github.io/forms/form.css"
+/>
+
+<h1>CONTACT US AND GET A FREE QUOTE</h1>
+
+<form
+  id="salesforceform"
+  class="salesforceform"
+  action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+  method="POST"
+  onsubmit="handleSubmit(event)"
+>
+  <input type="hidden" name="debug" value="1" />
+  <input name="lead_source" type="hidden" value="WEBSITE FORM - CONTACT US" />
+
+  <input name="oid" type="hidden" value="00D8B0000008ibk" />
+  <input id="url" name="url" type="hidden" />
+  <input
+    name="retURL"
+    type="hidden"
+    value_="https://wordpress-314336-3661924.cloudwaysapps.com/thank-you/"
+  />
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <label class="required-label" for="00N8B00000AhCQM"
+          >First & Last Name:</label
+        >
+        <input
+          required
+          id="00N8B00000AhCQM"
+          maxlength="255"
+          name="00N8B00000AhCQM"
+          size="20"
+          type="text"
+          tabindex="10"
+          placeholder="-First & Last Name-"
+        />
+
+        <label for="phone">Phone:</label>
+        <input
+          id="phone"
+          maxlength="40"
+          name="phone"
+          size="20"
+          type="tel"
+          tabindex="30"
+          oninput="onlyNumbers(event)"
+          onfocus="fillCountryCode(event)"
+        />
+        <div style="width: 100%; height: 20px"></div>
+      </div>
+      <div class="col">
+        <label class="required-label" for="email">Email</label>
+        <input
+          required
+          id="email"
+          maxlength="80"
+          name="email"
+          size="20"
+          type="text"
+          tabindex="20"
+          placeholder="-Email-"
+        />
+
+        <div id="number-travelers-container">
+          <label class="required-label" for="00N8c00000gutTj"
+            >Number of travelers:</label
+          >
+          <input
+            required
+            id="00N8c00000gutTj"
+            title="Total Number Pax"
+            name="00N8c00000gutTj"
+            tabindex="40"
+            type="text"
+            placeholder="-Select # of Travelers-"
+          />
+
+          <div
+            id="number-travelers-modal"
+            class="col"
+            tabindex="0"
+            onpointerleave="removeFocus(event)"
+          >
+            <div class="row">
+              <input
+                id="0-4"
+                name="travelers_0-4"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="41"
+              />
+              <label for="0-4">0 - 4 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="5-11"
+                name="travelers_5-11"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="42"
+              />
+              <label for="5-11">5 - 11 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="12-20"
+                name="travelers_12-20"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="43"
+              />
+              <label for="12-20">12 - 20 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="21-29"
+                name="travelers_21-29"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="44"
+              />
+              <label for="21-29">21 - 29 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="30-44"
+                name="travelers_30-44"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="45"
+              />
+              <label for="30-44">30 - 44 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="45-64"
+                name="travelers_45-64"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="45"
+              />
+              <label for="45-64">45 - 64 Years</label>
+            </div>
+            <div class="row">
+              <input
+                id="65+"
+                name="travelers_65+"
+                onchange="updateTravelers(event)"
+                type="number"
+                class="number-travelers-input"
+                min="0"
+                tabindex="47"
+              />
+              <label for="65+">65+ Years</label>
+            </div>
+            <hr />
+            <div class="row">
+              <label for="total-number-of-travelers"
+                >Total Number of Passengers</label
+              >
+              <input
+                readonly
+                id="total-number-of-travelers"
+                type="number"
+                class="number-travelers-total"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="required-label" for="start_date">Start Date:</label>
+        <input
+          required
+          id="start_date"
+          name="start_date"
+          size="12"
+          type="date"
+          tabindex="50"
+          onchange="recalculateDates(event)"
+        />
+        <input
+          id="00N8c00000PAX7A"
+          name="00N8c00000PAX7A"
+          size="12"
+          type="hidden"
+          tabindex="50"
+          hidden
+        />
+      </div>
+      <div class="col">
+        <label class="required-label" for="end_date">End Date:</label>
+        <input
+          required
+          id="end_date"
+          name="end_date"
+          size="12"
+          type="date"
+          tabindex="60"
+          onchange="recalculateDates(event)"
+        />
+        <input
+          id="00N8c00000PAcBf"
+          name="00N8c00000PAcBf"
+          size="12"
+          type="hidden"
+          tabindex="60"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label class="required-label" for="number_of_days"
+          >Number of Days:</label
+        >
+        <input
+          required
+          id="number_of_days"
+          name="number_of_days"
+          size="12"
+          type="number"
+          tabindex="50"
+          placeholder="-Number of Days-"
+          min="0"
+          onchange="recalculateDates(event)"
+        />
+      </div>
+      <div class="col" style="text-align: left; vertical-align: top">
+        <label class="required-label" for="00N8B000008O9hI"
+          >Preferred Booking Class:</label
+        >
+        <select
+          required
+          id="00N8B000008O9hI"
+          title="Booking Class"
+          name="00N8B000008O9hI"
+          tabindex="70"
+        >
+          <option value="" disabled selected>-Select an option-</option>
+          <option value="Backpacker Gringo (Budget)">
+            Backpacker (Budget)
+          </option>
+          <option value="Standard Gringo (2+3 stars)">
+            Standard Gringo (2+3 stars)
+          </option>
+          <option value="Comfortable Gringo (3+4 stars)">
+            Comfortable Gringo (3+4 stars)
+          </option>
+          <option value="Luxury Gringo (5 stars)">
+            Luxury Gringo (5 stars)
+          </option>
+          <option value="Super Deluxe Gringo (The very finest)">
+            Super Deluxe Gringo (The very finest)
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <label class="required-label" for="Type_of_Tour">Type of Tour:</label>
+  <div class="container box-shadow">
+    <div class="row">
+      <div class="col">
+        <div>ECUADOR</div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Set Itineraries"
+            />Set Itineraries</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Custom Made Itinerary"
+            />Custom Made Itinerary</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Birdwatching Trip"
+            />Birdwatching Trip</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Cloud Forest"
+            />Cloud Forest</label
+          >
+        </div>
+      </div>
+      <div class="col">
+        <div>GALAPAGOS</div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Cruise"
+            />Cruise</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input type="checkbox" name="Type_of_Tour" value="Land Tour" />Land
+            Tour</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Diving"
+            />Diving</label
+          >
+        </div>
+      </div>
+      <div class="col">
+        <div>AMAZON</div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Lodge Tour"
+            />Lodge Tour</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="River Cruise"
+            />River Cruise</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Adventure Tour"
+            />Adventure Tour</label
+          >
+        </div>
+      </div>
+      <div class="col">
+        <div>SOUTH AMERICA</div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Colombia Tour"
+            />Colombia Tour</label
+          >
+        </div>
+        <div class="row">
+          <label
+            ><input type="checkbox" name="Type_of_Tour" value="Peru" />Peru Tour
+          </label>
+        </div>
+        <div class="row">
+          <label
+            ><input
+              type="checkbox"
+              name="Type_of_Tour"
+              value="Bolivia Tour"
+            />Bolivia Tour</label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <label for="00N8B000008O9hS"
+    >Tell us any other information that will make your vacation magical (
+    Budget, dates, places, activities, activity level, special needs or
+    interests )</label
+  >
+  <textarea
+    id="00N8B000008O9hS"
+    name="00N8B000008O9hS"
+    rows="3"
+    wrap="soft"
+  ></textarea>
+
+  <label for="00N8c00000dTKt1">How did you find us?</label>
+  <select
+    onchange="showById( 'other', event.target.value === 'Other' )"
+    type="text"
+    name="00N8c00000dTKt1"
+    list="hdyfu_list"
+  >
+    <option value="" disabled selected>-Select an option-</option>
+    <option value="GOOGLE SEARCH">GOOGLE SEARCH</option>
+    <option value="BING">BING</option>
+    <option value="HAPPY GRINGO BLOG">HAPPY GRINGO BLOG</option>
+    <option value="FACEBOOK">FACEBOOK</option>
+    <option value="INSTAGRAM">INSTAGRAM</option>
+    <option value="YOUTUBE">YOUTUBE</option>
+    <option value="TIK TOK">TIK TOK</option>
+    <option value="TRIP ADVISOR">TRIP ADVISOR</option>
+    <option value="TRUSTPILOT">TRUSTPILOT</option>
+    <option value="TRAVEL GUIDE BOOKS">TRAVEL GUIDE BOOKS</option>
+    <option value="FAMILY OR FRIENDS RECOMMENDATION">
+      FAMILY OR FRIENDS RECOMMENDATION
+    </option>
+    <option value="Other">OTHER (PLEASE SPECIFY)</option>
+  </select>
+  <input
+    class="hidden"
+    id="other"
+    name="00N8B00000AiLnX"
+    type="text"
+    placeholder="Please insert your answer"
+  />
+
+  <div class="row">
+    <input
+      type="checkbox"
+      id="Receive_Newsletter"
+      name="Receive_Newsletter"
+    /><label
+      >Yes, I would like to receive a monthly newsletter and special oers from
+      Happy Gringo.</label
+    >
+  </div>
+  <input type="submit" name="submit" value="Submit" />
+  <span
+    >NOTE: If you've received no response from us after 1 business day, please
+    check your inbox's Spam folder. If still no luck, please contact
+    info@happygringo.com with a summary of your desired trip. Thanks!</span
+  >
+
+  <input
+    id="00N8c00000dTKsw"
+    name="00N8c00000dTKsw"
+    title="Country_Code"
+    type="hidden"
+  />
+
+  <input
+    id="00N8B000008O9hN"
+    name="00N8B000008O9hN"
+    title="Travel_Request__c"
+    rows="3"
+    type="hidden"
+    wrap="soft"
+  />
+</form>
