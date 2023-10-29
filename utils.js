@@ -31,3 +31,29 @@ function loadHtml(url, callback) {
       console.log("Failed to fetch page: ", err);
     });
 }
+
+const nextForm = (event) => {
+  event.preventDefault();
+  const currentform = event.target;
+  const submitform = document.getElementById("salesforceform");
+  fields = currentform.querySelectorAll("input,select,textArea");
+  for (f of fields) {
+    let copied = submitform.querySelector(`input[name='${f.name}']`);
+    if (!copied) {
+      copied = document.createElement("input");
+      submitform.appendChild(copied);
+    }
+    copied.name = f.name;
+    copied.value = f.value;
+    copied.type = "hidden";
+  }
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+  return false;
+};
+
+const previous = (event) => {
+  event.preventDefault();
+  document.getElementById("page2").classList.add("hidden");
+  document.getElementById("page1").classList.remove("hidden");
+};
