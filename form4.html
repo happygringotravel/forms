@@ -81,7 +81,6 @@
 
   /*Travelers Style*/
   .salesforceform #number-travelers-container {
-    display: contents;
     position: relative;
   }
   .salesforceform #number-travelers-container #number-travelers-modal {
@@ -131,15 +130,14 @@
     const submitform = document.getElementById("salesforceform");
     fields = currentform.querySelectorAll("input,select,textArea");
     for (f of fields) {
-      const existent = submitform.querySelector(`input[name='${f.name}']`);
-      if (existent) {
-        existent.remove();
+      let copied = submitform.querySelector(`input[name='${f.name}']`);
+      if (!copied) {
+        copied = document.createElement("input");
+        submitform.appendChild(copied);
       }
-      const copied = document.createElement("input");
       copied.name = f.name;
       copied.value = f.value;
       copied.type = "hidden";
-      submitform.appendChild(copied);
     }
     document.getElementById("page1").classList.add("hidden");
     document.getElementById("page2").classList.remove("hidden");

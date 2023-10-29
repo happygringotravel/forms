@@ -76,7 +76,6 @@
 
 /*Travelers Style*/
 .salesforceform #number-travelers-container {
-  display: contents;
   position: relative;
 }
 .salesforceform #number-travelers-container #number-travelers-modal {
