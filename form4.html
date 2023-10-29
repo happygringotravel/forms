@@ -128,7 +128,7 @@
   const nextForm = (event) => {
     event.preventDefault();
     const currentform = event.target;
-    const submitform = document.getElementById("submitform");
+    const submitform = document.getElementById("salesforceform");
     fields = currentform.querySelectorAll("input,select,textArea");
     for (f of fields) {
       const existent = submitform.querySelector(`input[name='${f.name}']`);
@@ -161,13 +161,16 @@
       <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
     </div>
     <center>Fields marked with an * are required</center>
-
+    <input type="hidden" name="debug" value="1" />
     <input
-      name="Lead Source"
+      name="lead_source"
       type="hidden"
       value="WEBSITE FORM - INDEX LAND TOURS"
     />
+    <!-- MainProduct Type -->
+    <input type="hidden" name="00N8B000008O9h8" value="Galapagos Land" />
     <input name="oid" type="hidden" value="00D8B0000008ibk" />
+    <input id="url" name="url" type="hidden" />
     <input
       name="retURL"
       type="hidden"
@@ -204,7 +207,7 @@
             size="12"
             type="hidden"
             tabindex="60"
-            placeholder="-Number of Days-"
+            placeholder="End Date"
           />
           <input
             required
@@ -212,6 +215,7 @@
             name="number_of_days"
             type="number"
             onchange="recalculateDates(event)"
+            min="0"
           />
         </div>
 
@@ -273,7 +277,7 @@
   </div>
 </form>
 <form
-  id="submitform"
+  id="salesforceform"
   class="salesforceform"
   action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
   method="POST"
@@ -288,14 +292,14 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <label class="required-label" for="00N8B000008ssXb"
+          <label class="required-label" for="00N8B00000AhCQM"
             >First &amp; Last Name:</label
           >
           <input
             required
-            id="00N8B000008ssXb"
+            id="00N8B00000AhCQM"
             maxlength="255"
-            name="00N8B000008ssXb"
+            name="00N8B00000AhCQM"
             size="20"
             type="text"
             placeholder="-First & Last Name-"
@@ -459,7 +463,7 @@
       wrap="soft"
     ></textarea>
     <center>
-      <button class="submit">BOOK NOW</button>
+      <button class="submit">SEND</button>
     </center>
     <a onclick="previous(event)">PREVIOUS</a>
   </div>
@@ -472,9 +476,9 @@
   />
 
   <input
-    id="00N8B000009eC3h"
-    name="00N8B000009eC3h"
-    title="FormData__c"
+    id="00N8B000008O9hN"
+    name="00N8B000008O9hN"
+    title="Travel_Request__c"
     rows="3"
     type="hidden"
     wrap="soft"
@@ -484,7 +488,7 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
   fieldMapping = {
-    "00N8B000008ssXb": "Name__c",
+    "00N8B00000AhCQM": "Full_Name__c",
     "00N8c00000PAX7A": "Start_Date__c",
     "00N8c00000PAcBf": "End_Date__c",
     "00N8B000008O9hI": "Booking_Class__c",
@@ -492,9 +496,12 @@
     "00N8B000008O9hS": "Observations__c",
     "00N8c00000dTKt1": "How_did_you_find_us__c",
     "00N8c00000dTKsw": "Country_Code__c",
-    "00N8B000009eC3h": "FormData__c",
+    "00N8B000008O9hN": "Travel_Request__c",
+    "00N8B000008O9h8": "Main_Product_Type__c",
   };
 
+  //fill url
+  document.getElementById("url").value = window.location.href;
   const getFieldId = (name) => {
     return Object.entries(fieldMapping).find((fm) => fm[1] === name)?.[0];
   };
@@ -502,8 +509,8 @@
   const handleSubmit = (event) => {
     //event.preventDefault();
     // Crea un objeto FormData a partir del formulario
-    const form = document.getElementById("submitform");
-    const inputData = document.getElementById(getFieldId("FormData__c"));
+    const form = document.getElementById("salesforceform");
+    const inputData = document.getElementById(getFieldId("Travel_Request__c"));
 
     var formData = new FormData(form);
 
@@ -512,13 +519,25 @@
 
     // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
     formData.forEach(function (value, key) {
-      fieldMapping[key]
-        ? (datosJSON[fieldMapping[key]] = value)
-        : (datosJSON[key] = value);
+      if (!value) {
+        return;
+      }
+      if (fieldMapping[key]) {
+        datosJSON[fieldMapping[key]] = value;
+      } else {
+        if (datosJSON[key]) {
+          if (!Array.isArray(datosJSON[key])) {
+            datosJSON[key] = [datosJSON[key]];
+          }
+          datosJSON[key].push(value);
+        } else {
+          datosJSON[key] = value;
+        }
+      }
     });
 
     // Convierte el objeto datosJSON a una cadena JSON
-    inputData.value = JSON.stringify(datosJSON);
+    inputData.value = JSON.stringify(datosJSON, null, 4);
 
     return true;
   };
@@ -544,11 +563,14 @@
 
   const flag = document.querySelector(".iti__flag-container");
   const selectedflag = document.querySelector(".iti__selected-flag");
+  const countryCode = document.querySelector("input[title='Country_Code']");
 
   const fillCountryCode = () => {
-    const country_code = selectedflag.title.split(":")[1].trim();
+    const countryPair = selectedflag.title.split(":");
+    const extentionNumber = countryPair[1].trim();
+    countryCode.value = countryPair[0].replace(/ *\([^)]*\) */g, "").trim();
     input.value =
-      country_code + " " + input.value.replace(country_code, "").trim();
+      extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
 
   flag.addEventListener("click", (event) => {
@@ -596,12 +618,53 @@
   }
   //RECALCULATE END DATE
   const recalculateDates = (event) => {
-    const numberOfDays = document.getElementById("number_of_days");
+    const numberOfDays =
+      document.getElementById("number_of_days") ??
+      document.createElement("input");
     const startDate = document.getElementById("start_date");
+    const endDate =
+      document.getElementById("end_date") ?? document.createElement("input");
     const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
     const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
 
-    console.log(startDate.value);
+    const sd = new Date(Date.parse(startDate.value));
+    const ed = new Date(Date.parse(endDate.value));
+
+    const days = Math.ceil((ed - sd) / (1000 * 60 * 60 * 24)) + 1;
+
+    if (!startDate.value) {
+      startDate.focus();
+      return;
+    }
+
+    switch (event.target.name) {
+      case "number_of_days":
+        const newEndDate = new Date(Date.parse(startDate.value)).addDays(
+          parseInt(numberOfDays.value)
+        );
+        endDate.value = newEndDate.toLocaleString("en-CA", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+        End_Date__c.value = newEndDate.toLocaleString("es-EC", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+        break;
+      case "start_date":
+      case "end_date":
+        numberOfDays.value = days;
+        break;
+    }
+
+    if (startDate.value !== "") {
+      console.log(startDate.value);
+      endDate.setAttribute("min", startDate.value);
+    }
 
     Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
       "es-EC",
@@ -613,14 +676,16 @@
       }
     );
 
-    End_Date__c.value = new Date(Date.parse(startDate.value))
-      .addDays(parseInt(numberOfDays.value))
-      .toLocaleString("es-EC", {
+    End_Date__c.value = new Date(Date.parse(endDate.value)).toLocaleString(
+      "es-EC",
+      {
         timeZone: "UTC",
         year: "numeric",
         month: "numeric",
         day: "numeric",
-      });
+      }
+    );
+    console.log(startDate.value, Start_Date__c.value, End_Date__c.value);
   };
 
   Date.prototype.addDays = function (days) {

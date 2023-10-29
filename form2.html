@@ -100,9 +100,15 @@
   method="POST"
   onsubmit="handleSubmit(event)"
 >
-  <input name="Lead Source" type="hidden" value="WEBSITE FORM - CONTACT US" />
+  <input type="hidden" name="debug" value="1" />
+  <input
+    name="lead_source"
+    type="hidden"
+    value="WEBSITE FORM - REQUEST QUOTE"
+  />
 
   <input name="oid" type="hidden" value="00D8B0000008ibk" />
+  <input id="url" name="url" type="hidden" />
   <input
     name="retURL"
     type="hidden"
@@ -112,14 +118,14 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <label class="required-label" for="00N8B000008ssXb"
+        <label class="required-label" for="00N8B00000AhCQM"
           >First & Last Name:</label
         >
         <input
           required
-          id="00N8B000008ssXb"
+          id="00N8B00000AhCQM"
           maxlength="255"
-          name="00N8B000008ssXb"
+          name="00N8B00000AhCQM"
           size="20"
           type="text"
           tabindex="10"
@@ -274,7 +280,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <label class="required-label" for="00N8c00000PAX7A">Start Date:</label>
+        <label class="required-label" for="start_date">Start Date:</label>
         <input
           required
           id="start_date"
@@ -335,29 +341,25 @@
     list="hdyfu_list"
   >
     <option value="" disabled selected>-Select an option-</option>
-    <option value="Google search">Google search</option>
-    <option value="Bing">Bing</option>
-    <option value="Happy Gringo Blog">Happy Gringo Blog</option>
-    <option value="Other blog">Other blog</option>
-    <option value="Facebook">Facebook</option>
-    <option value="Instagram">Instagram</option>
-
-    <option value="Youtube">Youtube</option>
-    <option value="Tik Tok">Tik Tok</option>
-    <option value="Tripadvisor">Tripadvisor</option>
-    <option value="Trustpilot">Trustpilot</option>
-
-    <option value="Travel Guide Books">Travel Guide Books</option>
-    <option value="Family or Friends Recommendation">
-      Family or Friends Recommendation
+    <option value="GOOGLE SEARCH">GOOGLE SEARCH</option>
+    <option value="BING">BING</option>
+    <option value="HAPPY GRINGO BLOG">HAPPY GRINGO BLOG</option>
+    <option value="FACEBOOK">FACEBOOK</option>
+    <option value="INSTAGRAM">INSTAGRAM</option>
+    <option value="YOUTUBE">YOUTUBE</option>
+    <option value="TIK TOK">TIK TOK</option>
+    <option value="TRIP ADVISOR">TRIP ADVISOR</option>
+    <option value="TRUSTPILOT">TRUSTPILOT</option>
+    <option value="TRAVEL GUIDE BOOKS">TRAVEL GUIDE BOOKS</option>
+    <option value="FAMILY OR FRIENDS RECOMMENDATION">
+      FAMILY OR FRIENDS RECOMMENDATION
     </option>
-
-    <option value="Other">Other (please specify)</option>
+    <option value="Other">OTHER (PLEASE SPECIFY)</option>
   </select>
   <input
     class="hidden"
     id="other"
-    name="other"
+    name="00N8B00000AiLnX"
     type="text"
     placeholder="Please insert your answer"
   />
@@ -387,9 +389,9 @@
   />
 
   <input
-    id="00N8B000009eC3h"
-    name="00N8B000009eC3h"
-    title="FormData__c"
+    id="00N8B000008O9hN"
+    name="00N8B000008O9hN"
+    title="Travel_Request__c"
     rows="3"
     type="hidden"
     wrap="soft"
@@ -399,7 +401,7 @@
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
   fieldMapping = {
-    "00N8B000008ssXb": "Name__c",
+    "00N8B00000AhCQM": "Full_Name__c",
     "00N8c00000PAX7A": "Start_Date__c",
     "00N8c00000PAcBf": "End_Date__c",
     "00N8B000008O9hI": "Booking_Class__c",
@@ -407,8 +409,13 @@
     "00N8B000008O9hS": "Observations__c",
     "00N8c00000dTKt1": "How_did_you_find_us__c",
     "00N8c00000dTKsw": "Country_Code__c",
-    "00N8B000009eC3h": "FormData__c",
+    "00N8B000008O9hN": "Travel_Request__c",
+    "00N8B00000AiLnX": "How_did_you_find_us_other__c",
   };
+
+  //fill url
+  document.getElementById("url").value = window.location.href;
+
   const getFieldId = (name) => {
     return Object.entries(fieldMapping).find((fm) => fm[1] === name)?.[0];
   };
@@ -439,7 +446,7 @@
   const fillCountryCode = () => {
     const countryPair = selectedflag.title.split(":");
     const extentionNumber = countryPair[1].trim();
-    countryCode.value = countryPair[0];
+    countryCode.value = countryPair[0].replace(/ *\([^)]*\) */g, "").trim();
     input.value =
       extentionNumber + " " + input.value.replace(extentionNumber, "").trim();
   };
@@ -452,7 +459,7 @@
     //event.preventDefault();
     // Crea un objeto FormData a partir del formulario
     const form = document.getElementById("salesforceform");
-    const inputData = document.getElementById("00N8B000009eC3h");
+    const inputData = document.getElementById(getFieldId("Travel_Request__c"));
 
     var formData = new FormData(form);
 
@@ -461,13 +468,25 @@
 
     // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
     formData.forEach(function (value, key) {
-      fieldMapping[key]
-        ? (datosJSON[fieldMapping[key]] = value)
-        : (datosJSON[key] = value);
+      if (!value) {
+        return;
+      }
+      if (fieldMapping[key]) {
+        datosJSON[fieldMapping[key]] = value;
+      } else {
+        if (datosJSON[key]) {
+          if (!Array.isArray(datosJSON[key])) {
+            datosJSON[key] = [datosJSON[key]];
+          }
+          datosJSON[key].push(value);
+        } else {
+          datosJSON[key] = value;
+        }
+      }
     });
 
     // Convierte el objeto datosJSON a una cadena JSON
-    inputData.value = JSON.stringify(datosJSON);
+    inputData.value = JSON.stringify(datosJSON, null, 4);
 
     return true;
   };
@@ -540,10 +559,53 @@
 
   //RECALCULATE END DATE
   const recalculateDates = (event) => {
+    const numberOfDays =
+      document.getElementById("number_of_days") ??
+      document.createElement("input");
     const startDate = document.getElementById("start_date");
-    const endDate = document.getElementById("end_date");
+    const endDate =
+      document.getElementById("end_date") ?? document.createElement("input");
     const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
     const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
+
+    const sd = new Date(Date.parse(startDate.value));
+    const ed = new Date(Date.parse(endDate.value));
+
+    const days = Math.ceil((ed - sd) / (1000 * 60 * 60 * 24)) + 1;
+
+    if (!startDate.value) {
+      startDate.focus();
+      return;
+    }
+
+    switch (event.target.name) {
+      case "number_of_days":
+        const newEndDate = new Date(Date.parse(startDate.value)).addDays(
+          parseInt(numberOfDays.value)
+        );
+        endDate.value = newEndDate.toLocaleString("en-CA", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+        End_Date__c.value = newEndDate.toLocaleString("es-EC", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+        break;
+      case "start_date":
+      case "end_date":
+        numberOfDays.value = days;
+        break;
+    }
+
+    if (startDate.value !== "") {
+      console.log(startDate.value);
+      endDate.setAttribute("min", startDate.value);
+    }
 
     Start_Date__c.value = new Date(Date.parse(startDate.value)).toLocaleString(
       "es-EC",
