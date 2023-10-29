@@ -1,0 +1,90 @@
+.salesforceform hr {
+  width: 100%;
+  border-top: 1px solid rgb(232, 232, 232);
+}
+
+.required-label:before {
+  content: "*";
+  color: red;
+}
+
+.salesforceform input[type="text"],
+.salesforceform input[type="tel"],
+.salesforceform input[type="date"],
+.salesforceform input[type="number"],
+.salesforceform textarea,
+.salesforceform select {
+  width: 100%;
+}
+
+.salesforceform.container {
+}
+
+.salesforceform .container {
+  padding: 5px;
+}
+
+.salesforceform .row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .salesforceform .row {
+    flex-direction: column;
+  }
+}
+
+.salesforceform .col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/*Travelers Style*/
+.salesforceform #number-travelers-container {
+  position: relative;
+}
+
+.salesforceform #number-travelers-container #number-travelers-modal {
+  display: none;
+}
+
+.salesforceform
+  #number-travelers-container:focus-within
+  #number-travelers-modal {
+  display: block;
+}
+
+.salesforceform #number-travelers-modal {
+  border: 1px solid #dbdbdb;
+  position: absolute;
+  padding: 10px;
+  margin-top: 3px;
+  background-color: white;
+  width: 90%;
+  gap: 4px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 1000;
+}
+.salesforceform #number-travelers-modal .row {
+  flex-direction: row;
+}
+.salesforceform input[type="number"].number-travelers-input {
+  width: 60px;
+}
+.salesforceform input[type="number"].number-travelers-total {
+  width: 60px;
+}
+
+/*Hidden class*/
+.hidden {
+  display: none !important;
+}

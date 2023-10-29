@@ -9,6 +9,7 @@ fieldMapping = {
   "00N8c00000dTKsw": "Country_Code__c",
   "00N8B000008O9hN": "Travel_Request__c",
   "00N8B00000AiLnX": "How_did_you_find_us_other__c",
+  "00N8B000008O9h8": "Main_Product_Type__c",
 };
 
 //fill url
