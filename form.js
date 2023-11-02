@@ -10,6 +10,13 @@ fieldMapping = {
   "00N8B000008O9hN": "Travel_Request__c",
   "00N8B00000AiLnX": "How_did_you_find_us_other__c",
   "00N8B000008O9h8": "Main_Product_Type__c",
+  "00N8B00000BM0Fm": "Ages_0_4__c",
+  "00N8B00000BM0Fr": "Ages_5_11__c",
+  "00N8B00000BM0Fw": "Ages_12_20__c",
+  "00N8B00000BM0G1": "Ages_21_29__c",
+  "00N8B00000BM02Z": "Ages_30_44__c",
+  "00N8B00000BM0G6": "Ages_45_64__c",
+  "00N8B00000BM0Fx": "Ages_65__c",
 };
 
 //fill url
