@@ -7,35 +7,6 @@
   href="https://happygringotravel.github.io/forms/form04.css"
 />
 
-<script>
-  const nextForm = (event) => {
-    event.preventDefault();
-    const currentform = event.target;
-    const submitform = document.getElementById("salesforceform");
-    fields = currentform.querySelectorAll("input,select,textArea");
-    for (f of fields) {
-      const existent = submitform.querySelector(`input[name='${f.name}']`);
-      if (existent) {
-        existent.remove();
-      }
-      const copied = document.createElement("input");
-      copied.name = f.name;
-      copied.value = f.value;
-      copied.type = "hidden";
-      submitform.appendChild(copied);
-    }
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
-    return false;
-  };
-
-  const previous = (event) => {
-    event.preventDefault();
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("page1").classList.remove("hidden");
-  };
-</script>
-
 <form onsubmit="nextForm(event)" class="salesforceform" method="POST">
   <h1>INDEX LAND TOURS</h1>
 
@@ -58,6 +29,13 @@
       name="retURL"
       type="hidden"
       value="https://wordpress-314336-3661924.cloudwaysapps.com/thank-you/"
+    />
+    <!-- webtolead flag -->
+    <input
+      id="00N8B00000BcBjP"
+      name="00N8B00000BcBjP"
+      type="checkbox"
+      value="1"
     />
 
     <div class="container">
