@@ -94,9 +94,9 @@
 .sales-form--title-bold {
   font-weight: 600;
 }
-#salesforceform{
+.salesforceform{
   font-family: "Open Sans";
 }
-#salesforceform input[type=checkbox]{
+.salesforceform input[type=checkbox]{
   margin-right: 8px;
 }
