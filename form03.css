@@ -1,6 +1,6 @@
 .required-label:before {
   content: "*";
-  color: red;
+  color:#e22729;
 }
 
 .salesforceform .container {
@@ -41,7 +41,7 @@
 }
 
 .salesforceform .subtitle {
-  background-color: red;
+  background-color: #e22729;
   text-align: center;
   padding: 10px;
 }
