@@ -46,6 +46,7 @@
   padding: 10px;
 }
 
+/*
 .salesforceform .submit {
   border-style: none;
   background-color: red;
@@ -56,7 +57,7 @@
   width: 70px;
   font-size: small;
 }
-
+*/
 /*Travelers Style*/
 .salesforceform #number-travelers-container {
   position: relative;
