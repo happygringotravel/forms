@@ -88,3 +88,13 @@
 .hidden {
   display: none !important;
 }
+/* New class for happy gringo*/
+.sales-form--title-bold {
+  font-weight: 600;
+}
+.salesforceform{
+  font-family: "Open Sans";
+}
+.salesforceform input[type=checkbox]{
+  margin-right: 8px;
+}
