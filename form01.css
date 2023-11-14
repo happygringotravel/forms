@@ -89,3 +89,6 @@
 .hidden {
   display: none !important;
 }
+.sales-form--title-bold {
+  font-weight: 600;
+}
