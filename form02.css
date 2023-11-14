@@ -98,3 +98,8 @@
 .salesforceform input[type=checkbox]{
   margin-right: 8px;
 }
+.sales-form--notice{
+  display: block;
+  font-size: 14px;
+  font-style: italic;
+}
