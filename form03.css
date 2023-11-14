@@ -115,6 +115,6 @@
   font-style: italic;
 }
 .salesforceform h3.subtitle {
-  color: #fff;
+  color: #fff !important;
   font-family: 'Fredoka One';
 }
