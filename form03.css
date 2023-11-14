@@ -117,6 +117,7 @@
 .salesforceform .subtitle h3{
   color: #fff !important;
   font-family: 'Fredoka One';
+  margin-bottom: 0;
 }
 .sales-form--steps {
 	background: #f1f1f1;
