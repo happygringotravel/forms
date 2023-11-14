@@ -42,8 +42,8 @@
 
 .salesforceform .subtitle {
   background-color: red;
-  color: white;
   text-align: center;
+  padding: 10px;
 }
 
 .salesforceform .submit {
@@ -117,4 +117,8 @@
 .salesforceform .subtitle h3{
   color: #fff;
   font-family: 'Fredoka One';
+}
+.sales-form--steps {
+	background: #f1f1f1;
+	border-bottom: solid 2px #f00;
 }
