@@ -1,6 +1,6 @@
 .required-label:before {
   content: "*";
-  color: red;
+  color: #e22729;
 }
 
 .salesforceform .container {
@@ -59,11 +59,12 @@
 }
 
 .salesforceform .subtitle {
-  background-color: red;
+  background-color: #e22729;
   color: white;
   text-align: center;
 }
 
+/*
 .salesforceform .submit {
   border-style: none;
   background-color: red;
@@ -73,7 +74,7 @@
   padding: 5px;
   width: 70px;
   font-size: small;
-}
+}*/
 
 /*Travelers Style*/
 .salesforceform #number-travelers-container {
@@ -131,4 +132,13 @@
   display: block;
   font-size: 14px;
   font-style: italic;
+}
+.salesforceform .subtitle h3{
+  color: #fff !important;
+  font-family: 'Fredoka One';
+  margin-bottom: 0;
+}
+.sales-form--steps {
+	background: #f1f1f1;
+	border-bottom: solid 2px #e22729;
 }
