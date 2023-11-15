@@ -1,22 +1,22 @@
 fieldMapping = {
-  "00N8B00000AhCQM": "Full_Name__c",
+  "00N8c00000ga5nz": "Full_Name__c",
   "00N8c00000PAX7A": "Start_Date__c",
   "00N8c00000PAcBf": "End_Date__c",
-  "00N8B000008O9hI": "Booking_Class__c",
-  "00N8c00000gutTj": "Total_Number_Pax__c",
-  "00N8B000008O9hS": "Observations__c",
+  "00N8c00000ga5nw": "Booking_Class__c",
+  "00N8c00000ga5o5": "Total_Number_Pax__c",
+  "00N8c00000ga5o2": "Observations__c",
   "00N8c00000dTKt1": "How_did_you_find_us__c",
-  "00N8c00000dTKsw": "Country_Code__c",
-  "00N8B000008O9hN": "Travel_Request__c",
-  "00N8B00000AiLnX": "How_did_you_find_us_other__c",
-  "00N8B000008O9h8": "Main_Product_Type__c",
-  "00N8B00000BM0Fm": "Ages_0_4__c",
-  "00N8B00000BM0Fr": "Ages_5_11__c",
-  "00N8B00000BM0Fw": "Ages_12_20__c",
-  "00N8B00000BM0G1": "Ages_21_29__c",
-  "00N8B00000BM02Z": "Ages_30_44__c",
-  "00N8B00000BM0G6": "Ages_45_64__c",
-  "00N8B00000BM0Fx": "Ages_65__c",
+  "00N8c00000ga5nx": "Country_Code__c",
+  "00N8c00000ga5o6": "Travel_Request__c",
+  "00N8c00000ga5o0": "How_did_you_find_us_other__c",
+  "00N8c00000ga5o1": "Main_Product_Type__c",
+  "00N8c00000ga5np": "Ages_0_4__c",
+  "00N8c00000ga5nu": "Ages_5_11__c",
+  "00N8c00000ga5nq": "Ages_12_20__c",
+  "00N8c00000ga5nr": "Ages_21_29__c",
+  "00N8c00000ga5ns": "Ages_30_44__c",
+  "00N8c00000ga5nt": "Ages_45_64__c",
+  "00N8c00000ga5nv": "Ages_65__c",
 };
 
 //fill url
@@ -112,7 +112,7 @@ const updateTravelers = (event) => {
   const totalNumberOfTravelersModal = document.getElementById(
     "total-number-of-travelers"
   );
-  const totalNumberOfTravelers = document.getElementById("00N8c00000gutTj");
+  const totalNumberOfTravelers = document.getElementById("00N8c00000ga5o5");
 
   const travelerInputs = document.querySelectorAll(
     "#number-travelers-modal .number-travelers-input"
