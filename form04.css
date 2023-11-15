@@ -145,3 +145,7 @@
 .sales-form--steps .container{
   padding: 10px;
 }
+.sales-form--steps textarea {
+  margin: 10px;
+  max-width: calc(100% - 20px);
+}
