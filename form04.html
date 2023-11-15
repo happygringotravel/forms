@@ -7,7 +7,7 @@
   href="https://happygringotravel.github.io/forms/form04.css"
 />
 
-<form onsubmit="nextForm(event)" class="salesforceform" method="POST">
+<form onsubmit="nextForm(event)" class="salesforceform sales-form--steps" method="POST">
   <h1>INDEX LAND TOURS</h1>
 
   <div id="page1">
@@ -133,13 +133,13 @@
     </div>
 
     <center>
-      <button class="submit">REQUEST A FREE QUOTE</button>
+      <button class="submit btn-content">REQUEST A FREE QUOTE</button>
     </center>
   </div>
 </form>
 <form
   id="salesforceform"
-  class="salesforceform"
+  class="salesforceform sales-form--steps"
   action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
   method="POST"
   onsubmit="handleSubmit(event)"
@@ -324,9 +324,9 @@
       wrap="soft"
     ></textarea>
     <center>
-      <button class="submit">SEND</button>
+      <button class="submit btn-content">SEND</button>
     </center>
-    <a onclick="previous(event)">PREVIOUS</a>
+    <a style="padding:10px;color:#e22729;" onclick="previous(event)">PREVIOUS</a>
   </div>
 
   <input
