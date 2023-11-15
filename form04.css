@@ -10,7 +10,7 @@
 .salesforceform .row {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
   padding: 15px 0;
 }
 
@@ -141,4 +141,5 @@
 .sales-form--steps {
 	background: #f1f1f1;
 	border-bottom: solid 2px #e22729;
+  padding: 10px;
 }
