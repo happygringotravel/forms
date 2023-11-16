@@ -222,15 +222,15 @@ const recalculateDates = (event) => {
     }
   );
 
-  End_Date__c.value = new Date(Date.parse(endDate.value)).toLocaleString(
-    "es-EC",
-    {
-      timeZone: "UTC",
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-    }
-  );
+  End_Date__c.value =
+    !endDate?.value || endDate.value === "Invalid Date"
+      ? null
+      : new Date(Date.parse(endDate.value)).toLocaleString("es-EC", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
   console.log(startDate.value, Start_Date__c.value, End_Date__c.value);
 };
 
