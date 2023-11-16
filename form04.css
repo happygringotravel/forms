@@ -123,30 +123,45 @@
 .sales-form--title-bold {
   font-weight: 600;
 }
-.salesforceform{
+.salesforceform {
   font-family: "Open Sans";
 }
-.salesforceform input[type=checkbox]{
+.salesforceform input[type="checkbox"] {
   margin-right: 8px;
 }
-.sales-form--notice{
+.sales-form--notice {
   display: block;
   font-size: 14px;
   font-style: italic;
 }
-.salesforceform .subtitle h3{
+.salesforceform .subtitle h3 {
   color: #fff !important;
-  font-family: 'Fredoka One';
+  font-family: "Fredoka One";
   margin-bottom: 0;
 }
 .sales-form--steps {
-	background: #f1f1f1;
-	border-bottom: solid 2px #e22729;
+  background: #f1f1f1;
+  border-bottom: solid 2px #e22729;
 }
-.sales-form--steps .container{
+.sales-form--steps .container {
   padding: 10px;
 }
 .sales-form--steps textarea {
   margin: 10px;
   max-width: calc(100% - 20px);
+}
+.input-container input {
+  position: relative;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
 }
