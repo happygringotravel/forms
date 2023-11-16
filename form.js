@@ -17,7 +17,6 @@ fieldMapping = {
   "00N8c00000ga5ns": "Ages_30_44__c",
   "00N8c00000ga5nt": "Ages_45_64__c",
   "00N8c00000ga5nv": "Ages_65__c",
-  "00N8c00000dTKtD": "SEND_TO_HAPPY_GRINGO__c",
 };
 
 //fill url
