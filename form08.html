@@ -1,0 +1,294 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://happygringotravel.github.io/forms/form03.css"
+/>
+
+<form
+  onsubmit="nextForm(event)"
+  class="salesforceform sales-form--steps"
+  method="POST"
+>
+  <div id="page1">
+    <div class="subtitle">
+      <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+    <!--<input type="hidden" name="debug" value="1" />-->
+    <input
+      name="lead_source"
+      type="hidden"
+      value="WEBSITE FORM - INSIDE LAND TOURS"
+    />
+    <!-- MainProduct Type -->
+    <input type="hidden" name="00N8c00000ga5o1" value="Galapagos Land" />
+    <input name="oid" type="hidden" value="00D8c000002K7L0" />
+    <input id="url" name="url" type="hidden" />
+    <input
+      type="hidden"
+      name="retURL"
+      value="https://happygringo.com/thank-you/"
+    />
+    <!-- webtolead flag -->
+    <input
+      id="00N8c00000ga5o7"
+      name="00N8c00000ga5o7"
+      type="hidden"
+      value="1"
+    />
+
+    <div class="container">
+      <div class="row">
+        <div class="col input-container">
+          <label class="required-label" for="start_date">Start Date:</label>
+          <input
+            required
+            id="start_date"
+            name="start_date"
+            size="12"
+            type="date"
+            tabindex="50"
+            onchange="recalculateDates(event)"
+          />
+          <input
+            id="00N8c00000PAX7A"
+            name="00N8c00000PAX7A"
+            size="12"
+            type="hidden"
+            tabindex="50"
+            hidden
+          />
+          <input
+            id="00N8c00000PAcBf"
+            name="00N8c00000PAcBf"
+            size="12"
+            type="hidden"
+            tabindex="60"
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="00N8c00000ga5nw"
+            >Comfort level:</label
+          >
+          <select
+            required
+            id="00N8c00000ga5nw"
+            title="Booking Class"
+            name="00N8c00000ga5nw"
+          >
+            <option value="" disabled selected>-Select an option-</option>
+            <option value="Comfortable Gringo (3+4 stars)">
+                Comfortable Gringo (3+4 stars)
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <div id="number-travelers-container">
+            <label class="required-label" for="00N8c00000ga5o5"
+              >Number of travelers:</label
+            >
+            <input
+              required
+              id="00N8c00000ga5o5"
+              title="Total Number Pax"
+              name="00N8c00000ga5o5"
+              tabindex="40"
+              type="text"
+              placeholder="-Select # of Travelers-"
+              oninput="updateTravelers(event)"
+            />
+
+            <div
+              id="number-travelers-modal"
+              class="col"
+              tabindex="0"
+              onpointerleave="removeFocus(event)"
+            >
+              <div class="row">
+                <input
+                  id="0-4"
+                  name="00N8c00000ga5np"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="41"
+                />
+                <label for="0-4">0 - 4 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="5-11"
+                  name="00N8c00000ga5nu"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="42"
+                />
+                <label for="5-11">5 - 11 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="12-20"
+                  name="00N8c00000ga5nq"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="43"
+                />
+                <label for="12-20">12 - 20 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="21-29"
+                  name="00N8c00000ga5nr"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="44"
+                />
+                <label for="21-29">21 - 29 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="30-44"
+                  name="00N8c00000ga5ns"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="45"
+                />
+                <label for="30-44">30 - 44 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="45-64"
+                  name="00N8c00000ga5nt"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="45"
+                />
+                <label for="45-64">45 - 64 Years</label>
+              </div>
+              <div class="row">
+                <input
+                  id="65+"
+                  name="00N8c00000ga5nv"
+                  onchange="updateTravelers(event)"
+                  type="number"
+                  class="number-travelers-input"
+                  min="0"
+                  tabindex="47"
+                />
+                <label for="65+">65+ Years</label>
+              </div>
+              <hr />
+              <div class="row">
+                <label for="total-number-of-travelers"
+                  >Total Number of Passengers</label
+                >
+                <input
+                  readonly
+                  id="total-number-of-travelers"
+                  type="number"
+                  class="number-travelers-total"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <center>
+      <button class="submit btn-content">BOOK NOW</button>
+    </center>
+  </div>
+</form>
+<form
+  id="salesforceform"
+  class="salesforceform sales-form--steps"
+  action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+  method="POST"
+  onsubmit="handleSubmit(event)"
+>
+  <div id="page2" class="hidden">
+    <div class="subtitle">
+      <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label class="required-label" for="00N8c00000ga5nz"
+            >First &amp; Last Name:</label
+          >
+          <input
+            required
+            id="00N8c00000ga5nz"
+            maxlength="255"
+            name="00N8c00000ga5nz"
+            size="20"
+            type="text"
+            placeholder="-First & Last Name-"
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="email">Email</label>
+          <input
+            id="email"
+            maxlength="80"
+            name="email"
+            size="20"
+            type="text"
+            placeholder="-Email-"
+          />
+        </div>
+        <div class="col">
+          <label for="phone">Phone:</label>
+          <input
+            id="phone"
+            maxlength="40"
+            name="phone"
+            size="20"
+            type="tel"
+            oninput="onlyNumbers(event)"
+            onfocus="fillCountryCode(event)"
+          />
+        </div>
+      </div>
+    </div>
+    <center>
+      <button class="submit btn-content">SEND</button>
+    </center>
+    <a style="padding: 10px; color: #e22729" onclick="previous(event)"
+      >PREVIOUS</a
+    >
+  </div>
+
+  <input
+    id="00N8c00000ga5nx"
+    name="00N8c00000ga5nx"
+    title="Country_Code"
+    type="hidden"
+  />
+
+  <input
+    id="00N8c00000ga5o6"
+    name="00N8c00000ga5o6"
+    title="Travel_Request__c"
+    rows="3"
+    type="hidden"
+    wrap="soft"
+  />
+</form>
