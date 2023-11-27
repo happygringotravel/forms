@@ -165,3 +165,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
+.number-travelers-input {
+	border: 1px solid #c6c6c6 !important;
+}
