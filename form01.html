@@ -44,6 +44,8 @@
           type="text"
           tabindex="10"
           placeholder="-First & Last Name-"
+          oninvalid="this.setCustomValidity('Please enter your name')"
+          oninput="this.setCustomValidity('')"
         />
 
         <label for="phone">Phone:</label>
@@ -70,6 +72,8 @@
           type="text"
           tabindex="20"
           placeholder="-Email-"
+          oninvalid="this.setCustomValidity('Please enter your email')"
+          oninput="this.setCustomValidity('')"
         />
 
         <div id="number-travelers-container">
@@ -85,6 +89,8 @@
             type="text"
             placeholder="-Select # of Travelers-"
             oninput="updateTravelers(event)"
+            oninvalid="this.setCustomValidity('Please select number of travelers')"
+            oninput="this.setCustomValidity('')"
           />
 
           <div
@@ -204,6 +210,8 @@
           type="date"
           tabindex="50"
           onchange="recalculateDates(event)"
+          oninvalid="this.setCustomValidity('Please select start date')"
+          oninput="this.setCustomValidity('')"
         />
         <input
           id="00N8c00000PAX7A"
@@ -224,6 +232,8 @@
           type="date"
           tabindex="60"
           onchange="recalculateDates(event)"
+          oninvalid="this.setCustomValidity('Please select end date')"
+          oninput="this.setCustomValidity('')"
         />
         <input
           id="00N8c00000PAcBf"
@@ -249,6 +259,8 @@
           placeholder="-Number of Days-"
           min="0"
           onchange="recalculateDates(event)"
+          oninvalid="this.setCustomValidity('Please select number of days')"
+          oninput="this.setCustomValidity('')"
         />
       </div>
       <div class="col" style="text-align: left; vertical-align: top">
@@ -261,6 +273,8 @@
           title="Booking Class"
           name="00N8c00000ga5nw"
           tabindex="70"
+          oninvalid="this.setCustomValidity('Please select booking class')"
+          oninput="this.setCustomValidity('')"
         >
           <option value="" disabled selected>-Select an option-</option>
           <option value="Backpacker Gringo (Budget)">

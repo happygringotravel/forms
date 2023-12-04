@@ -52,6 +52,8 @@
             type="date"
             tabindex="50"
             onchange="recalculateDates(event)"
+            oninvalid="this.setCustomValidity('Please select start date')"
+            oninput="this.setCustomValidity('')"
           />
           <input
             id="00N8c00000PAX7A"
@@ -78,16 +80,21 @@
             id="00N8c00000ga5nw"
             title="Booking Class"
             name="00N8c00000ga5nw"
+            oninvalid="this.setCustomValidity('Please select booking class')"
+            oninput="this.setCustomValidity('')"
           >
             <option value="" disabled selected>-Select an option-</option>
             <option value="Backpacker Gringo (Budget)">
-                Backpacker (Budget)
+              Backpacker (Budget)
             </option>
             <option value="Standard Gringo (2+3 stars)">
               Standard Gringo (2+3 stars)
             </option>
             <option value="Comfortable Gringo (3+4 stars)">
-                Comfortable Gringo (3+4 stars)
+              Comfortable Gringo (3+4 stars)
+            </option>
+            <option value="Luxury Gringo (5 stars)">
+              Luxury Gringo (5 stars)
             </option>
           </select>
         </div>
@@ -105,6 +112,8 @@
               type="text"
               placeholder="-Select # of Travelers-"
               oninput="updateTravelers(event)"
+              oninvalid="this.setCustomValidity('Please select number of travelers')"
+              oninput="this.setCustomValidity('')"
             />
 
             <div
@@ -247,6 +256,8 @@
             size="20"
             type="text"
             placeholder="-First & Last Name-"
+            oninvalid="setCustomValidity('Please enter your name')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="col">
@@ -258,6 +269,8 @@
             size="20"
             type="text"
             placeholder="-Email-"
+            oninvalid="setCustomValidity('Please enter your email')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="col">

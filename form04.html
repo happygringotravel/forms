@@ -51,6 +51,8 @@
             size="12"
             type="date"
             onchange="recalculateDates(event)"
+            oninvalid="this.setCustomValidity('Please enter a valid date.')"
+            oninput="this.setCustomValidity('')"
           />
           <input
             required
@@ -58,6 +60,8 @@
             name="00N8c00000PAX7A"
             size="12"
             type="hidden"
+            oninvalid="this.setCustomValidity('Please enter a valid date.')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
         <div class="col">
@@ -71,6 +75,8 @@
             type="hidden"
             tabindex="60"
             placeholder="End Date"
+            oninvalid="this.setCustomValidity('Please enter a valid date.')"
+            oninput="this.setCustomValidity('')"
           />
           <input
             required
@@ -79,6 +85,8 @@
             type="number"
             onchange="recalculateDates(event)"
             min="0"
+            oninvalid="this.setCustomValidity('Please enter a valid number.')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
 
@@ -90,6 +98,8 @@
             id="Type_of_Land_Tour"
             title="Main Product Type"
             name="Type_of_Land_Tour"
+            oninvalid="this.setCustomValidity('Please select an option.')"
+            oninput="this.setCustomValidity('')"
           >
             <option value="">- Select an option -</option>
             <option value="Classic Galapagos Highlights">
@@ -115,6 +125,8 @@
             id="00N8c00000ga5nw"
             title="Booking Class"
             name="00N8c00000ga5nw"
+            oninvalid="this.setCustomValidity('Please select an option.')"
+            oninput="this.setCustomValidity('')"
           >
             <option value="" disabled selected>-Select an option-</option>
             <option value="Backpacker Gringo (Budget)">
@@ -166,6 +178,8 @@
             size="20"
             type="text"
             placeholder="-First & Last Name-"
+            oninvalid="setCustomValidity('Please enter your name')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="col">
@@ -182,6 +196,8 @@
               type="text"
               placeholder="-Select # of Travelers-"
               oninput="updateTravelers(event)"
+              oninvalid="this.setCustomValidity('Please enter a valid number.')"
+              oninput="this.setCustomValidity('')"
             />
 
             <div
@@ -311,6 +327,8 @@
             size="20"
             type="text"
             placeholder="-Email-"
+            oninvalid="this.setCustomValidity('Please enter a valid email address.')"
+            oninput="this.setCustomValidity('')"
           />
         </div>
       </div>
