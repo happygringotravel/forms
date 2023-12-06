@@ -17,6 +17,7 @@ fieldMapping = {
   "00N8c00000ga5ns": "Ages_30_44__c",
   "00N8c00000ga5nt": "Ages_45_64__c",
   "00N8c00000ga5nv": "Ages_65__c",
+  "00N8c00000gac9Z": "Total_Number_Days__c",
 };
 
 //fill url
@@ -113,6 +114,7 @@ const updateTravelers = (event) => {
     "total-number-of-travelers"
   );
   const totalNumberOfTravelers = document.getElementById("00N8c00000ga5o5");
+  totalNumberOfTravelers.setCustomValidity("");
 
   const travelerInputs = document.querySelectorAll(
     "#number-travelers-modal .number-travelers-input"
@@ -167,9 +169,12 @@ const recalculateDates = (event) => {
   const numberOfDays =
     document.getElementById("number_of_days") ??
     document.createElement("input");
+  numberOfDays.setCustomValidity("");
   const startDate = document.getElementById("start_date");
+  startDate.setCustomValidity("");
   const endDate =
     document.getElementById("end_date") ?? document.createElement("input");
+  endDate.setCustomValidity("");
   const Start_Date__c = document.getElementById(getFieldId("Start_Date__c"));
   const End_Date__c = document.getElementById(getFieldId("End_Date__c"));
 
@@ -182,33 +187,35 @@ const recalculateDates = (event) => {
     startDate.focus();
     return;
   }
-
-  switch (event.target.name) {
+  switch (event.target.id) {
     case "number_of_days":
-      const newEndDate = new Date(Date.parse(startDate.value)).addDays(
-        parseInt(numberOfDays.value)
-      );
-      endDate.value = newEndDate.toLocaleString("en-CA", {
-        timeZone: "UTC",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      });
-      End_Date__c.value = newEndDate.toLocaleString("es-EC", {
-        timeZone: "UTC",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      });
+      if (!endDate.value || numberOfDays.value > days) {
+        const newEndDate = new Date(Date.parse(startDate.value)).addDays(
+          parseInt(numberOfDays.value)
+        );
+        endDate.value = newEndDate.toLocaleString("en-CA", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+        End_Date__c.value = newEndDate.toLocaleString("es-EC", {
+          timeZone: "UTC",
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+        });
+      }
       break;
     case "start_date":
     case "end_date":
-      numberOfDays.value = days;
+      if (!numberOfDays.value || numberOfDays.value > days) {
+        numberOfDays.value = days;
+      }
       break;
   }
 
   if (startDate.value !== "") {
-    console.log(startDate.value);
     endDate.setAttribute("min", startDate.value);
   }
 
@@ -231,7 +238,6 @@ const recalculateDates = (event) => {
           month: "numeric",
           day: "numeric",
         });
-  console.log(startDate.value, Start_Date__c.value, End_Date__c.value);
 };
 
 Date.prototype.addDays = function (days) {
