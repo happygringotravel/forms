@@ -1,4 +1,4 @@
-const bl = ["mailinator"];
+const bl = ["mailinator", "alinator"];
 fieldMapping = {
   "00N8c00000ga5nz": "Full_Name__c",
   "00N8c00000PAX7A": "Start_Date__c",
