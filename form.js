@@ -1,3 +1,4 @@
+const bl = ["mailinator"];
 fieldMapping = {
   "00N8c00000ga5nz": "Full_Name__c",
   "00N8c00000PAX7A": "Start_Date__c",
@@ -80,6 +81,13 @@ const handleSubmit = (event) => {
     if (fieldMapping[key]) {
       datosJSON[fieldMapping[key]] = value;
     } else {
+      if (key === "email") {
+        for (b of bl) {
+          if (value.includes(b)) {
+            return;
+          }
+        }
+      }
       if (datosJSON[key]) {
         if (!Array.isArray(datosJSON[key])) {
           datosJSON[key] = [datosJSON[key]];
