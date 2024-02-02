@@ -1,4 +1,4 @@
-const bl = ["mailinator", "alinator"];
+const bl = ["mailinator", "ailinator"];
 fieldMapping = {
   "00N8c00000ga5nz": "Full_Name__c",
   "00N8c00000PAX7A": "Start_Date__c",
@@ -84,7 +84,7 @@ const handleSubmit = (event) => {
       if (key === "email") {
         for (b of bl) {
           if (value.includes(b)) {
-            return;
+            throw new Error("Please enter a valid email address.");
           }
         }
       }
