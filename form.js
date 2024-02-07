@@ -84,7 +84,7 @@ const handleSubmit = (event) => {
       if (key === "email") {
         for (b of bl) {
           if (value.includes(b)) {
-            throw new Error("Please enter a valid email address.");
+            event.preventDefault();
           }
         }
       }
