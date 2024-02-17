@@ -117,7 +117,9 @@ const handleSubmit = async (event) => {
   const wtTrip = await response.json();
   console.log(wtTrip);
 
-  if (wtTrip?.data?.uuid) {
+  window.location.href = wtTrip.url;
+
+  if (wtTrip?.data?.uuid && false) {
     document.getElementById("loading-send").classList.add("hidden");
     const wtButton = document.getElementsByClassName(
       "wtrvl-checkout_button"
