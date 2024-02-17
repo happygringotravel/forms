@@ -117,7 +117,9 @@ const handleSubmit = async (event) => {
   const wtTrip = await response.json();
   console.log(wtTrip);
 
-  window.location.href = wtTrip.data.url;
+  if (wtTrip?.data?.url) {
+    window.location.href = wtTrip.data.url;
+  }
 
   if (wtTrip?.data?.uuid && false) {
     document.getElementById("loading-send").classList.add("hidden");
