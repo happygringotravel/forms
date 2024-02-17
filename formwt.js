@@ -62,8 +62,12 @@ flag.addEventListener("click", (event) => {
   fillCountryCode();
 });
 
-const handleSubmit = (event) => {
-  //event.preventDefault();
+const handleSubmit = async (event) => {
+  document.getElementById("btn-send").classList.add("hidden");
+  document.getElementById("loading-send").classList.remove("hidden");
+
+  event.preventDefault();
+  //return false;
   // Crea un objeto FormData a partir del formulario
   const form = document.getElementById("salesforceform");
   const inputData = document.getElementById(getFieldId("Travel_Request__c"));
@@ -102,7 +106,31 @@ const handleSubmit = (event) => {
   // Convierte el objeto datosJSON a una cadena JSON
   inputData.value = JSON.stringify(datosJSON, null, 4);
 
-  return true;
+  console.log({ datosJSON });
+
+  //TODO SEND SF EAD HERE
+
+  const response = await fetch(
+    "https://7rbx0hgnx1.execute-api.us-east-1.amazonaws.com/?data=" +
+      encodeURIComponent(inputData.value)
+  );
+  const wtTrip = await response.json();
+  console.log(wtTrip);
+
+  if (wtTrip?.data?.uuid) {
+    document.getElementById("loading-send").classList.add("hidden");
+    const wtButton = document.getElementsByClassName(
+      "wtrvl-checkout_button"
+    )[0];
+    wtButton.setAttribute("data-uuid", wtTrip.data.uuid); //  = wtTrip.data.uuid;
+    wtButton.setAttribute(
+      "href",
+      `https://demo.wetravel.to/checkout_embed?uuid=${wtTrip.data.uuid}`
+    );
+    wtButton.click();
+  }
+
+  //return true;
 };
 
 const showById = (id, show) => {

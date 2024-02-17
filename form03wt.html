@@ -2,11 +2,37 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
 />
-<link
-  rel="stylesheet"
-  href="https://happygringotravel.github.io/forms/form03.css"
-/>
+<link rel="stylesheet" href="form03.css" />
 
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+<button
+  class="wtrvl-checkout_button hidden"
+  id="wetravel_button_widget"
+  data-env="https://demo.wetravel.to"
+  data-version="v0.3"
+  data-uid="9136"
+  data-uuid="06797681"
+  href="https://demo.wetravel.to/checkout_embed?uuid=06797681"
+  style="
+    background-color: #33ae3f;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-transform: capitalize;
+    padding: 13px 24px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 14px;
+    display: inline-block;
+    cursor: pointer;
+  "
+>
+  Book Now
+</button>
 <form
   onsubmit="nextForm(event)"
   class="salesforceform sales-form--steps"
@@ -288,7 +314,8 @@
       </div>
     </div>
     <center>
-      <button class="submit btn-content">SEND</button>
+      <button id="btn-send" class="submit btn-content">SEND</button>
+      <div id="loading-send" class="lds-dual-ring hidden"></div>
     </center>
     <a style="padding: 10px; color: #e22729" onclick="previous(event)"
       >PREVIOUS</a
