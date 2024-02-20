@@ -114,7 +114,7 @@ const createTrip = async (event) => {
       encodeURIComponent(JSON.stringify(formData))
   );
   wtTrip = await response.json();
-  document.getElementById("btn-send").removeAttribute("disabled");
+  document.getElementById("btn-send").classList.remove("hidden");
   console.log(wtTrip);
 };
 
