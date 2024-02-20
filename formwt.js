@@ -1,4 +1,5 @@
 const bl = ["mailinator", "ailinator"];
+let wtTrip;
 fieldMapping = {
   "00N8c00000ga5nz": "Full_Name__c",
   "00N8c00000PAX7A": "Start_Date__c",
@@ -62,21 +63,90 @@ flag.addEventListener("click", (event) => {
   fillCountryCode();
 });
 
+const nextFormWT = (event) => {
+  event.preventDefault();
+  const currentform = event.target;
+  const submitform = document.getElementById("salesforceform");
+  fields = currentform.querySelectorAll("input,select,textArea");
+  for (f of fields) {
+    let copied = submitform.querySelector(`input[name='${f.name}']`);
+    if (!copied) {
+      copied = document.createElement("input");
+      submitform.appendChild(copied);
+    }
+    copied.name = f.name;
+    copied.value = f.value;
+    copied.type = "hidden";
+  }
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+  createTrip();
+  return false;
+};
+
+const createTrip = async (event) => {
+  const formData = getFormData();
+
+  unitPrice = 90;
+  pricetable = {
+    1: 285,
+    2: 150,
+    3: 115,
+    4: 100,
+    5: 100,
+    6: 90,
+    7: 90,
+    8: 90,
+    9: 90,
+    10: 90,
+  };
+  if (pricetable[formData.Total_Number_Pax__c]) {
+    unitPrice = pricetable[formData.Total_Number_Pax__c];
+  }
+
+  formData.price = unitPrice * formData.Total_Number_Pax__c * 1000;
+  formData.title = "ECUADOR BIRDING DAY TOUR: ANTISANA RESERVE";
+
+  console.log({ formData });
+
+  const response = await fetch(
+    "https://7rbx0hgnx1.execute-api.us-east-1.amazonaws.com/?data=" +
+      encodeURIComponent(JSON.stringify(formData))
+  );
+  wtTrip = await response.json();
+  document.getElementById("btn-send").removeAttribute("disabled");
+  console.log(wtTrip);
+};
+
 const handleSubmit = async (event) => {
-  document.getElementById("btn-send").classList.add("hidden");
-  document.getElementById("loading-send").classList.remove("hidden");
+  //document.getElementById("btn-send").classList.add("hidden");
+  //document.getElementById("loading-send").classList.remove("hidden");
 
   event.preventDefault();
-  //return false;
-  // Crea un objeto FormData a partir del formulario
+
+  if (wtTrip?.data?.uuid) {
+    document.getElementById("loading-send").classList.add("hidden");
+    const wtButton = document.getElementsByClassName(
+      "wtrvl-checkout_button"
+    )[0];
+    wtButton.setAttribute("data-uuid", wtTrip.data.uuid); //  = wtTrip.data.uuid;
+    wtButton.setAttribute(
+      "href",
+      `https://demo.wetravel.to/checkout_embed?uuid=${wtTrip.data.uuid}`
+    );
+    wtButton.click();
+  }
+
+  //return true;
+};
+
+const getFormData = () => {
+  var datosJSON = {};
+
   const form = document.getElementById("salesforceform");
   const inputData = document.getElementById(getFieldId("Travel_Request__c"));
 
   var formData = new FormData(form);
-
-  // Crea un objeto vacío para almacenar los datos
-  var datosJSON = {};
-
   // Itera a través de los pares clave/valor en formData y los agrega al objeto datosJSON
   formData.forEach(function (value, key) {
     if (!value) {
@@ -108,33 +178,7 @@ const handleSubmit = async (event) => {
 
   console.log({ datosJSON });
 
-  //TODO SEND SF EAD HERE
-
-  const response = await fetch(
-    "https://7rbx0hgnx1.execute-api.us-east-1.amazonaws.com/?data=" +
-      encodeURIComponent(inputData.value)
-  );
-  const wtTrip = await response.json();
-  console.log(wtTrip);
-
-  if (wtTrip?.data?.url && false) {
-    window.location.href = wtTrip.data.url;
-  }
-
-  if (wtTrip?.data?.uuid) {
-    document.getElementById("loading-send").classList.add("hidden");
-    const wtButton = document.getElementsByClassName(
-      "wtrvl-checkout_button"
-    )[0];
-    wtButton.setAttribute("data-uuid", wtTrip.data.uuid); //  = wtTrip.data.uuid;
-    wtButton.setAttribute(
-      "href",
-      `https://demo.wetravel.to/checkout_embed?uuid=${wtTrip.data.uuid}`
-    );
-    wtButton.click();
-  }
-
-  //return true;
+  return datosJSON;
 };
 
 const showById = (id, show) => {
