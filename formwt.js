@@ -245,7 +245,10 @@ for (const checkbox of checkboxes) {
 //MIN DATES
 const dates = document.querySelectorAll(".salesforceform input[type=date]");
 for (const d of dates) {
-  d.min = new Date().toISOString().split("T")[0];
+  var now = new Date();
+  var nextweek = new Date();
+  nextweek.setDate(now.getDate() + 7);
+  d.min = nextweek.toISOString().split("T")[0];
 }
 
 //RECALCULATE END DATE
