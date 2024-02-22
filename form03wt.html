@@ -81,8 +81,8 @@
             type="date"
             tabindex="50"
             onchange="recalculateDates(event)"
-            oninvalid="this.setCustomValidity('Please select start date')"
-            oninput="this.setCustomValidity('')"
+            oninvalid="event.target.validationMessage ?  null : this.setCustomValidity('Please select start date')"
+            oninput="dateValidation(event)"
           />
           <input
             id="00N8c00000PAX7A"

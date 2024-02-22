@@ -50,6 +50,64 @@ window.intlTelInput(input, {
 const flag = document.querySelector(".iti__flag-container");
 const selectedflag = document.querySelector(".iti__selected-flag");
 const countryCode = document.querySelector("input[title='Country_Code']");
+const date = document.getElementById("start_date");
+
+const dateValidation = (event) => {
+  let selDate = new Date(event.target.value);
+  const month = selDate.getUTCMonth() + 1; // months from 1-12
+  const day = selDate.getUTCDate();
+  const year = selDate.getUTCFullYear();
+
+  const invalidDates = [
+    {
+      year: 2024,
+      month: 3,
+      day: 9,
+      message: "March 9,10,11 not available",
+    },
+    {
+      year: 2024,
+      month: 3,
+      day: 10,
+      message: "March 9,10,11 not available",
+    },
+    {
+      year: 2024,
+      month: 3,
+      day: 11,
+      message: "March 9,10,11 not available",
+    },
+    {
+      month: 12,
+      day: 24,
+      message: "X'mas and New Year dates not available",
+    },
+    {
+      month: 12,
+      day: 25,
+      message: "X'mas and New Year dates not available",
+    },
+    {
+      month: 12,
+      day: 31,
+      message: "X'mas and New Year dates not available",
+    },
+    {
+      month: 1,
+      day: 25,
+      message: "X'mas and New Year dates not available",
+    },
+  ];
+  const invalidDate = invalidDates.find(
+    (d) => (d.year === year || !d.year) && d.month === month && d.day === day
+  );
+  if (invalidDate) {
+    event.target.setCustomValidity(invalidDate.message);
+    event.target.reportValidity();
+  } else {
+    event.target.setCustomValidity("");
+  }
+};
 
 const fillCountryCode = () => {
   const countryPair = selectedflag.title.split(":");
@@ -109,15 +167,12 @@ const createTrip = async (event) => {
   formData.url =
     "https://wordpress-314336-3661924.cloudwaysapps.com/wp-content/uploads/2021/08/happy-logo.jpg";
 
-  console.log({ formData });
-
   const response = await fetch(
     "https://7rbx0hgnx1.execute-api.us-east-1.amazonaws.com/?data=" +
       encodeURIComponent(JSON.stringify(formData))
   );
   wtTrip = await response.json();
   document.getElementById("btn-send").classList.remove("hidden");
-  console.log(wtTrip);
 };
 
 const handleSubmit = async (event) => {
@@ -178,8 +233,6 @@ const getFormData = () => {
   // Convierte el objeto datosJSON a una cadena JSON
   inputData.value = JSON.stringify(datosJSON, null, 4);
 
-  console.log({ datosJSON });
-
   return datosJSON;
 };
 
@@ -191,7 +244,6 @@ const showById = (id, show) => {
 //TRAVELERS
 const removeFocus = (event) => {
   if (event.pointerType != "mouse") return;
-  console.log(event);
   document.activeElement.blur();
 };
 
@@ -260,7 +312,7 @@ const recalculateDates = (event) => {
     document.createElement("input");
   numberOfDays.setCustomValidity("");
   const startDate = document.getElementById("start_date");
-  startDate.setCustomValidity("");
+
   const endDate =
     document.getElementById("end_date") ?? document.createElement("input");
   endDate.setCustomValidity("");
