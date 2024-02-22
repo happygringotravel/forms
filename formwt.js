@@ -162,7 +162,7 @@ const createTrip = async (event) => {
     unitPrice = pricetable[formData.Total_Number_Pax__c];
   }
 
-  formData.price = unitPrice * formData.Total_Number_Pax__c * 1000;
+  formData.price = unitPrice * formData.Total_Number_Pax__c;
   formData.title = "ECUADOR BIRDING DAY TOUR: ANTISANA RESERVE";
   formData.url =
     "https://wordpress-314336-3661924.cloudwaysapps.com/wp-content/uploads/2021/08/happy-logo.jpg";
