@@ -108,7 +108,7 @@ const dateValidation = (event) => {
   const invalidDate = invalidDates.find(
     (d) => (d.year === year || !d.year) && d.month === month && d.day === day
   );
-  if (days <= 7) {
+  if (days < 7) {
     event.target.setCustomValidity(
       "For bookings within the next seven days, please write to info@happygringo.com"
     );
@@ -313,7 +313,7 @@ const dates = document.querySelectorAll(".salesforceform input[type=date]");
 for (const d of dates) {
   var now = new Date();
   var nextweek = new Date();
-  nextweek.setDate(now.getDate() + 6);
+  nextweek.setDate(now.getDate() + 7);
   d.min = now.toISOString().split("T")[0];
 }
 
