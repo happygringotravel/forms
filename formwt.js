@@ -62,20 +62,20 @@ const dateValidation = (event) => {
     {
       year: 2024,
       month: 3,
-      day: 9,
-      message: "March 9,10,11 not available",
+      day: 29,
+      message: "March 29,30,31 not available",
     },
     {
       year: 2024,
       month: 3,
-      day: 10,
-      message: "March 9,10,11 not available",
+      day: 30,
+      message: "March 29,30,31 not available",
     },
     {
       year: 2024,
       month: 3,
-      day: 11,
-      message: "March 9,10,11 not available",
+      day: 31,
+      message: "March 29,30,31 not available",
     },
     {
       month: 12,
