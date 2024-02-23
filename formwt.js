@@ -313,7 +313,7 @@ const dates = document.querySelectorAll(".salesforceform input[type=date]");
 for (const d of dates) {
   var now = new Date();
   var nextweek = new Date();
-  nextweek.setDate(now.getDate() + 7);
+  nextweek.setDate(now.getDate() + 6);
   d.min = now.toISOString().split("T")[0];
 }
 
