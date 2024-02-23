@@ -58,6 +58,9 @@ const dateValidation = (event) => {
   const day = selDate.getUTCDate();
   const year = selDate.getUTCFullYear();
 
+  //days difference between sedDate and now
+  const days = Math.ceil((selDate - new Date()) / (1000 * 60 * 60 * 24));
+
   const invalidDates = [
     {
       year: 2024,
@@ -80,28 +83,37 @@ const dateValidation = (event) => {
     {
       month: 12,
       day: 24,
-      message: "X'mas and New Year dates not available",
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       month: 12,
       day: 25,
-      message: "X'mas and New Year dates not available",
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       month: 12,
       day: 31,
-      message: "X'mas and New Year dates not available",
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       month: 1,
       day: 25,
-      message: "X'mas and New Year dates not available",
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
   ];
   const invalidDate = invalidDates.find(
     (d) => (d.year === year || !d.year) && d.month === month && d.day === day
   );
-  if (invalidDate) {
+  if (days <= 7) {
+    event.target.setCustomValidity(
+      "For bookings within the next seven days, please write to info@happygringo.com"
+    );
+    event.target.reportValidity();
+  } else if (invalidDate) {
     event.target.setCustomValidity(invalidDate.message);
     event.target.reportValidity();
   } else {
@@ -302,7 +314,7 @@ for (const d of dates) {
   var now = new Date();
   var nextweek = new Date();
   nextweek.setDate(now.getDate() + 7);
-  d.min = nextweek.toISOString().split("T")[0];
+  d.min = now.toISOString().split("T")[0];
 }
 
 //RECALCULATE END DATE
