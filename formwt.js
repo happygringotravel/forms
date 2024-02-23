@@ -66,19 +66,19 @@ const dateValidation = (event) => {
       year: 2024,
       month: 3,
       day: 29,
-      message: "March 29,30,31 not available",
+      message: "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       year: 2024,
       month: 3,
       day: 30,
-      message: "March 29,30,31 not available",
+      message: "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       year: 2024,
       month: 3,
       day: 31,
-      message: "March 29,30,31 not available",
+      message: "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
     {
       month: 12,
@@ -100,7 +100,7 @@ const dateValidation = (event) => {
     },
     {
       month: 1,
-      day: 25,
+      day: 1,
       message:
         "Selected dates are in high demand. To book, please write to info@happygringo.com",
     },
