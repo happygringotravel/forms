@@ -43,7 +43,7 @@
 >
   <div id="page1">
     <div class="subtitle">
-      <h3>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+      <h3>BOOK YOUR TOUR TODAY</h3>
     </div>
     <center>Fields marked with an * are required</center>
     <!--<input type="hidden" name="debug" value="1" />-->
@@ -81,8 +81,8 @@
             type="date"
             tabindex="50"
             onchange="recalculateDates(event)"
-            oninvalid="this.setCustomValidity('Please select start date')"
-            oninput="this.setCustomValidity('')"
+            oninvalid="event.target.validationMessage ?  null : this.setCustomValidity('Please select start date')"
+            oninput="dateValidation(event)"
           />
           <input
             id="00N8c00000PAX7A"
@@ -113,18 +113,18 @@
             oninput="this.setCustomValidity('')"
           >
             <option value="" disabled selected>-Select an option-</option>
-            <option value="Backpacker Gringo (Budget)">
+            <!--<option value="Backpacker Gringo (Budget)">
               Backpacker (Budget)
-            </option>
+            </option>-->
             <option value="Standard Gringo (2+3 stars)">
               Standard Gringo (2+3 stars)
             </option>
-            <option value="Comfortable Gringo (3+4 stars)">
+            <!--<option value="Comfortable Gringo (3+4 stars)">
               Comfortable Gringo (3+4 stars)
             </option>
             <option value="Luxury Gringo (5 stars)">
               Luxury Gringo (5 stars)
-            </option>
+            </option>-->
           </select>
         </div>
         <div class="col">
@@ -326,7 +326,7 @@
       </div>
     </div>
     <center>
-      <button id="btn-send" class="submit btn-content hidden">SEND</button>
+      <button id="btn-send" class="submit btn-content hidden">CONFIRM BOOKING</button>
       <div id="loading-send" class="lds-dual-ring hidden"></div>
     </center>
     <a style="padding: 10px; color: #e22729" onclick="previous(event)"

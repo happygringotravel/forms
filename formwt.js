@@ -50,6 +50,79 @@ window.intlTelInput(input, {
 const flag = document.querySelector(".iti__flag-container");
 const selectedflag = document.querySelector(".iti__selected-flag");
 const countryCode = document.querySelector("input[title='Country_Code']");
+const date = document.getElementById("start_date");
+
+const dateValidation = (event) => {
+  let selDate = new Date(event.target.value);
+  const month = selDate.getUTCMonth() + 1; // months from 1-12
+  const day = selDate.getUTCDate();
+  const year = selDate.getUTCFullYear();
+
+  //days difference between sedDate and now
+  const days = Math.ceil((selDate - new Date()) / (1000 * 60 * 60 * 24));
+
+  const invalidDates = [
+    {
+      year: 2024,
+      month: 3,
+      day: 29,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      year: 2024,
+      month: 3,
+      day: 30,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      year: 2024,
+      month: 3,
+      day: 31,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      month: 12,
+      day: 24,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      month: 12,
+      day: 25,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      month: 12,
+      day: 31,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+    {
+      month: 1,
+      day: 1,
+      message:
+        "Selected dates are in high demand. To book, please write to info@happygringo.com",
+    },
+  ];
+  const invalidDate = invalidDates.find(
+    (d) => (d.year === year || !d.year) && d.month === month && d.day === day
+  );
+  if (days < 7) {
+    event.target.setCustomValidity(
+      "For bookings within the next seven days, please write to info@happygringo.com"
+    );
+    event.target.reportValidity();
+  } else if (invalidDate) {
+    event.target.setCustomValidity(invalidDate.message);
+    event.target.reportValidity();
+  } else {
+    event.target.setCustomValidity("");
+  }
+};
 
 const fillCountryCode = () => {
   const countryPair = selectedflag.title.split(":");
@@ -117,15 +190,12 @@ const createTrip = async (event) => {
   formData.url =
     "https://wordpress-314336-3661924.cloudwaysapps.com/wp-content/uploads/2021/08/happy-logo.jpg";
 
-  console.log({ formData });
-
   const response = await fetch(
     "https://jbjhpwv477.execute-api.us-east-1.amazonaws.com/?data=" +
       encodeURIComponent(JSON.stringify(formData))
   );
   wtTrip = await response.json();
   document.getElementById("btn-send").classList.remove("hidden");
-  console.log(wtTrip);
 };
 
 const handleSubmit = async (event) => {
@@ -186,8 +256,6 @@ const getFormData = () => {
   // Convierte el objeto datosJSON a una cadena JSON
   inputData.value = JSON.stringify(datosJSON, null, 4);
 
-  console.log({ datosJSON });
-
   return datosJSON;
 };
 
@@ -199,7 +267,6 @@ const showById = (id, show) => {
 //TRAVELERS
 const removeFocus = (event) => {
   if (event.pointerType != "mouse") return;
-  console.log(event);
   document.activeElement.blur();
 };
 
@@ -258,7 +325,7 @@ for (const d of dates) {
   var now = new Date();
   var nextweek = new Date();
   nextweek.setDate(now.getDate() + 7);
-  d.min = nextweek.toISOString().split("T")[0];
+  d.min = now.toISOString().split("T")[0];
 }
 
 //RECALCULATE END DATE
@@ -268,7 +335,7 @@ const recalculateDates = (event) => {
     document.createElement("input");
   numberOfDays.setCustomValidity("");
   const startDate = document.getElementById("start_date");
-  startDate.setCustomValidity("");
+
   const endDate =
     document.getElementById("end_date") ?? document.createElement("input");
   endDate.setCustomValidity("");
