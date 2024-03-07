@@ -104,7 +104,15 @@ const createTrip = async (event) => {
     unitPrice = pricetable[formData.Total_Number_Pax__c];
   }
 
-  formData.price = unitPrice * formData.Total_Number_Pax__c * 1000;
+  //get checked from pick_from_hotel input
+
+  console.log({ formData });
+  //formData.group_min = formData.Total_Number_Pax__c;
+  //formData.group_max = formData.Total_Number_Pax__c;
+  formData.price = unitPrice * formData.Total_Number_Pax__c;
+  formData.pick_from_hotel_checked =
+    document.getElementById("pick_from_hotel").checked;
+  formData.lead_source = "WEBSITE FORM - INSIDE TWO STEPS CONTACT FORM";
   formData.title = "ECUADOR BIRDING DAY TOUR: ANTISANA RESERVE";
   formData.url =
     "https://wordpress-314336-3661924.cloudwaysapps.com/wp-content/uploads/2021/08/happy-logo.jpg";
@@ -112,7 +120,7 @@ const createTrip = async (event) => {
   console.log({ formData });
 
   const response = await fetch(
-    "https://7rbx0hgnx1.execute-api.us-east-1.amazonaws.com/?data=" +
+    "https://jbjhpwv477.execute-api.us-east-1.amazonaws.com/?data=" +
       encodeURIComponent(JSON.stringify(formData))
   );
   wtTrip = await response.json();
