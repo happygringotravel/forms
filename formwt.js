@@ -213,7 +213,7 @@ const handleSubmit = async (event) => {
     wtButton.setAttribute("data-uuid", wtTrip.data.uuid); //  = wtTrip.data.uuid;
     wtButton.setAttribute(
       "href",
-      `https://demo.wetravel.to/checkout_embed?uuid=${wtTrip.data.uuid}`
+      `https://www.wetravel.com/checkout_embed?uuid=${wtTrip.data.uuid}`
     );
     wtButton.click();
   }
