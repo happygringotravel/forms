@@ -205,6 +205,7 @@ const handleSubmit = async (event) => {
   event.preventDefault();
 
   if (wtTrip?.data?.uuid) {
+    document.getElementById("wetravel-uuid").value = wtTrip.data.uuid;
     document.getElementById("loading-send").classList.add("hidden");
     const wtButton = document.getElementsByClassName(
       "wtrvl-checkout_button"
@@ -403,6 +404,22 @@ const recalculateDates = (event) => {
           day: "numeric",
         });
 };
+
+//CONFIRM
+const eventMethod = window.addEventListener
+  ? "addEventListener"
+  : "attachEvent";
+const eventer = window[eventMethod];
+const messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+
+eventer(messageEvent, (e) => {
+  if (e.data.type === "bookingConfirmed") {
+    console.log("Success Payed");
+    document.getElementById("payed").value = "true";
+    getFormData();
+    document.getElementById("salesforceform").submit();
+  }
+});
 
 Date.prototype.addDays = function (days) {
   const date = new Date(this.valueOf());
