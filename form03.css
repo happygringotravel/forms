@@ -167,3 +167,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: rotate(360deg);
   }
 }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  top: 20px;
+  left: 0px;
+  width: 120px;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 6px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0.5px;
+  font-size: x-small;
+  width: 280px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 9999;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
