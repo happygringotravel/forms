@@ -160,7 +160,7 @@ const nextFormWT = (event) => {
 const createTrip = async (event) => {
   const formData = getFormData();
 
-  unitPrice = pricetable[pricetable.length - 1];
+  unitPrice = Object.values(pricetable)[Object.values(pricetable).length - 1];
 
   if (pricetable[formData.Total_Number_Pax__c]) {
     unitPrice = pricetable[formData.Total_Number_Pax__c];
