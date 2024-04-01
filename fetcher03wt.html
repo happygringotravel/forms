@@ -1,31 +1,26 @@
-<html>
-  <head></head>
-  <body>
-    <div id="external_form"></div>
-    <script src="https://happygringotravel.github.io/forms/utils.js"></script>
+<div id="external_form"></div>
+<script src="https://happygringotravel.github.io/forms/utils.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 
-    <script>
-      //var wtLambda = "https://jbjhpwv477.execute-api.us-east-1.amazonaws.com";
-      var wtLambda = "https://v79ga6dqp1.execute-api.us-east-1.amazonaws.com";
-      var pricetable = {
-        1: 285,
-        2: 150,
-        3: 115,
-        4: 100,
-        5: 100,
-        6: 90,
-        7: 90,
-        8: 90,
-        9: 90,
-        10: 90,
-      };
+<script>
+  //var wtLambda = "https://jbjhpwv477.execute-api.us-east-1.amazonaws.com";
+  var wtLambda = "https://v79ga6dqp1.execute-api.us-east-1.amazonaws.com";
+  var pricetable = {
+    1: 285,
+    2: 150,
+    3: 115,
+    4: 100,
+    5: 100,
+    6: 90,
+    7: 90,
+    8: 90,
+    9: 90,
+    10: 90,
+  };
 
-      loadHtml("form03wt.html", () => {
-        loadScript("https://happygringotravel.github.io/forms/formwt.js");
-        loadScript("https://happygringotravel.github.io/forms/wt.js");
-      });
-    </script>
-  </body>
-</html>
+  loadHtml("https://happygringotravel.github.io/forms/form03wt.html", () => {
+    loadScript("https://happygringotravel.github.io/forms/formwt.js");
+    loadScript("https://happygringotravel.github.io/forms/wt.js");
+  });
+</script>
