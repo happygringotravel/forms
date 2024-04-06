@@ -51,6 +51,10 @@ const flag = document.querySelector(".iti__flag-container");
 const selectedflag = document.querySelector(".iti__selected-flag");
 const countryCode = document.querySelector("input[title='Country_Code']");
 const date = document.getElementById("start_date");
+document.getElementById("form-title").value =
+  formTitle ?? "BOOK YOUR TOUR TODAY";
+document.getElementById("form-title-2").value =
+  formTitle ?? "BOOK YOUR TOUR TODAY";
 
 const dateValidation = (event) => {
   let selDate = new Date(event.target.value);
@@ -173,7 +177,7 @@ const createTrip = async (event) => {
   //formData.group_max = formData.Total_Number_Pax__c;
   formData.price = unitPrice * formData.Total_Number_Pax__c;
   formData.lead_source = "WEBSITE FORM - INSIDE TWO STEPS CONTACT FORM";
-  formData.title = "ECUADOR BIRDING DAY TOUR: ANTISANA RESERVE";
+  formData.title = tourTitle ?? "DAY TOUR";
   formData.url =
     "https://wordpress-314336-3661924.cloudwaysapps.com/wp-content/uploads/2021/08/happy-logo.jpg";
 
