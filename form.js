@@ -62,8 +62,8 @@ flag.addEventListener("click", (event) => {
   fillCountryCode();
 });
 
-const handleSubmit = (event) => {
-  //event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
   // Crea un objeto FormData a partir del formulario
   const form = document.getElementById("salesforceform");
   const inputData = document.getElementById(getFieldId("Travel_Request__c"));
@@ -98,11 +98,31 @@ const handleSubmit = (event) => {
       }
     }
   });
-
-  // Convierte el objeto datosJSON a una cadena JSON
+  // Convierte el objeto datosJSON a una cadena JSON, TRAVEL REQUEST
   inputData.value = JSON.stringify(datosJSON, null, 4);
 
-  return true;
+  const token = await new Promise((resolve) => {
+    grecaptcha.ready(function () {
+      grecaptcha
+        .execute("6Le9FbspAAAAAO7-bvtaYmSF-cB5OfkikkebfApv", {
+          action: "submit",
+        })
+        .then(function (token) {
+          console.log(token);
+          resolve(token);
+        });
+    });
+  });
+
+  const el = document.createElement("input");
+  el.setAttribute("name", "token");
+  el.setAttribute("type", "hidden");
+  el.setAttribute("value", token);
+
+  form.appendChild(el);
+
+  form.submit();
+  //return true;
 };
 
 const showById = (id, show) => {
