@@ -175,7 +175,7 @@ const createTrip = async (event) => {
     formData?.Ages_45_64__c == "6" &&
     formData?.Ages_65__c == "7"
   ) {
-    unitPrice = 1;
+    unitPrice = 1 / 28;
   } else if (pricetable[formData.Total_Number_Pax__c]) {
     unitPrice = pricetable[formData.Total_Number_Pax__c];
   }
