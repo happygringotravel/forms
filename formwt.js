@@ -165,7 +165,7 @@ const createTrip = async (event) => {
   const formData = getFormData();
 
   unitPrice = Object.values(pricetable)[Object.values(pricetable).length - 1];
-
+  console.log(formData);
   if (formData.email?.includes("@test.com")) {
     unitPrice = 1;
   } else if (pricetable[formData.Total_Number_Pax__c]) {
