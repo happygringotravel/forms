@@ -166,7 +166,15 @@ const createTrip = async (event) => {
 
   unitPrice = Object.values(pricetable)[Object.values(pricetable).length - 1];
   console.log(formData);
-  if (formData.email?.includes("@test.com")) {
+  if (
+    formData?.Ages_0_4__c == "1" &&
+    formData?.Ages_5_11__c == "2" &&
+    formData?.Ages_12_20__c == "3" &&
+    formData?.Ages_21_29__c == "4" &&
+    formData?.Ages_30_44__c == "5" &&
+    formData?.Ages_45_64__c == "6" &&
+    formData?.Ages_65__c == "7"
+  ) {
     unitPrice = 1;
   } else if (pricetable[formData.Total_Number_Pax__c]) {
     unitPrice = pricetable[formData.Total_Number_Pax__c];
