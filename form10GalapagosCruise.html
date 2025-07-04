@@ -75,22 +75,29 @@
           />
         </div>
         <div class="col">
-          <label class="required-label" for="00N8c00000ga5nw"
-            >Comfort level:</label
+          <label class="required-label" for="number_of_days"
+            >Number of Days:</label
           >
-          <select
-            required
-            id="00N8c00000ga5nw"
-            title="Booking Class"
-            name="00N8c00000ga5nw"
-            oninvalid="this.setCustomValidity('Please select booking class')"
+          <input
+            id="00N8c00000PAcBf"
+            name="00N8c00000PAcBf"
+            size="12"
+            type="hidden"
+            tabindex="60"
+            placeholder="End Date"
+            oninvalid="this.setCustomValidity('Please enter a valid date.')"
             oninput="this.setCustomValidity('')"
-          >
-            <option value="" disabled selected>-Select an option-</option>
-            <option value="Standard Gringo (2+3 stars)">
-              Standard Gringo (2+3 stars)
-            </option>
-          </select>
+          />
+          <input
+            required
+            id="number_of_days"
+            name="number_of_days"
+            type="number"
+            onchange="recalculateDates(event)"
+            min="0"
+            oninvalid="this.setCustomValidity('Please enter a valid number.')"
+            oninput="this.setCustomValidity('')"
+          />
         </div>
         <div class="col">
           <div id="number-travelers-container">
