@@ -58,7 +58,7 @@
       <h3>SPEAK TO A GALAPAGOS ADVISOR TODAY</h3>
     </div>
     <center>Fields marked with an * are required</center>
-    <input type="hidden" name="debug" value="1" />
+    <!--<input type="hidden" name="debug" value="1" />-->
     <input
       name="lead_source"
       type="hidden"
@@ -68,14 +68,14 @@
     <!-- MainProduct Type -->
      
     <input type="hidden" name="00N8c00000ga5o1" value="Galapagos Land" />
-    <input name="oid" type="hidden" value="00DVE000006lWvR" />
+    <input name="oid" type="hidden" value="00D8c000002K7L0" />
     <!-- <input name="oid" type="hidden" value="00D8c000002K7L0" /> -->
     <input id="url" name="url" type="hidden" />
-    <!--<input
+    <input
       type="hidden"
       name="retURL"
       value="https://happygringo.com/thank-you/"
-    />-->
+    />
     <!-- webtolead flag -->
     <input
       id="00N8c00000ga5o7"
@@ -294,7 +294,7 @@
 <form
   id="salesforceform"
   class="salesforceform sales-form--steps"
-  action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DVE000006lWvR"
+  action="https://v79ga6dqp1.execute-api.us-east-1.amazonaws.com/captcha"
   method="POST"
   onsubmit="handleSubmit(event)"
 >
@@ -337,7 +337,7 @@
         </div>
 
         <div class="col">
-          <label class="required-label" for="email">Email</label>
+          <label class="required-label" for="email">Email:</label>
           <input
             id="email"
             maxlength="80"
