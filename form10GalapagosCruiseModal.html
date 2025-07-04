@@ -6,7 +6,48 @@
   rel="stylesheet"
   href="https://happygringotravel.github.io/forms/form03.css"
 />
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 5px;
+  }
+  .show-form-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 30px;
+    background-color: #e22729;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .show-form-btn:hover {
+    background-color: #c41f21;
+  }
+</style>
 
+<button class="show-form-btn" onclick="document.getElementById('formModal').style.display='block'">
+  SPEAK TO A GALAPAGOS ADVISOR
+</button>
+
+<div id="formModal" class="modal">
+  <div class="modal-content">
 <form
   onsubmit="nextForm(event)"
   class="salesforceform sales-form--steps"
@@ -349,5 +390,15 @@
     wrap="soft"
   />
 </form>
+  </div>
+</div>
 
-
+<script>
+  // Cerrar modal al hacer clic fuera del contenido
+  window.onclick = function(event) {
+    const modal = document.getElementById('formModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
