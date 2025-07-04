@@ -66,37 +66,26 @@
             tabindex="50"
             hidden
           />
-          <input
-            id="00N8c00000PAcBf"
-            name="00N8c00000PAcBf"
-            size="12"
-            type="hidden"
-            tabindex="60"
-          />
         </div>
         <div class="col">
-          <label class="required-label" for="number_of_days"
-            >Number of Days:</label
-          >
+          <label class="required-label" for="end_date">End Date:</label>
+          <input
+            required
+            id="end_date"
+            name="end_date"
+            size="12"
+            type="date"
+            tabindex="60"
+            onchange="recalculateDates(event)"
+            oninvalid="this.setCustomValidity('Please select end date')"
+            oninput="this.setCustomValidity('')"
+          />
           <input
             id="00N8c00000PAcBf"
             name="00N8c00000PAcBf"
             size="12"
             type="hidden"
             tabindex="60"
-            placeholder="End Date"
-            oninvalid="this.setCustomValidity('Please enter a valid date.')"
-            oninput="this.setCustomValidity('')"
-          />
-          <input
-            required
-            id="number_of_days"
-            name="number_of_days"
-            type="number"
-            onchange="recalculateDates(event)"
-            min="0"
-            oninvalid="this.setCustomValidity('Please enter a valid number.')"
-            oninput="this.setCustomValidity('')"
           />
         </div>
         <div class="col">
