@@ -249,7 +249,7 @@
   //   ?product=...         hidden 00N8c00000ga5o1 (default: "Galapagos Land"; "none" removes it)
   //   ?options=a,b,c       comfort-level options to enable (default: "standard")
   //                        valid keys: backpacker, standard, comfortable, luxury
-  var params = new URLSearchParams(window.location.search);
+  var params = window.__formParams || new URLSearchParams(window.location.search);
 
   var title = params.get('title');
   if (title !== null) {

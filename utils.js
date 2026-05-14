@@ -15,13 +15,29 @@ function loadScript(src, callback) {
 }
 
 function loadHtml(url, callback) {
+  try {
+    var qIdx = url.indexOf("?");
+    window.__formParams = new URLSearchParams(qIdx >= 0 ? url.slice(qIdx) : "");
+  } catch (e) {
+    window.__formParams = new URLSearchParams("");
+  }
   fetch(url)
     .then(function (response) {
-      // When the page is loaded convert it to text
       return response.text();
     })
     .then(function (html) {
-      document.getElementById("external_form").innerHTML = html;
+      var container = document.getElementById("external_form");
+      container.innerHTML = html;
+      // innerHTML does not execute <script> tags; re-create them so they run.
+      container.querySelectorAll("script").forEach(function (oldScript) {
+        var newScript = document.createElement("script");
+        for (var i = 0; i < oldScript.attributes.length; i++) {
+          var a = oldScript.attributes[i];
+          newScript.setAttribute(a.name, a.value);
+        }
+        newScript.text = oldScript.textContent;
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
       if (callback) {
         callback();
       }
