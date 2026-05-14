@@ -1,0 +1,288 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://happygringotravel.github.io/forms/form03.css"
+/>
+
+<form
+  onsubmit="nextForm(event)"
+  class="salesforceform sales-form--steps"
+  method="POST"
+>
+  <div id="page1">
+    <div class="subtitle">
+      <h3 data-title-page1>BOOK YOUR TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+    <!--<input type="hidden" name="debug" value="1" />-->
+    <input
+      name="lead_source"
+      type="hidden"
+      value="WEBSITE FORM - INSIDE TWO STEPS CONTACT FORM"
+    />
+    <!-- MainProduct Type (toggled by ?product=) -->
+    <input
+      data-product-input
+      type="hidden"
+      name="00N8c00000ga5o1"
+      value="Galapagos Land"
+    />
+    <input name="oid" type="hidden" value="00D8c000002K7L0" />
+    <input id="url" name="url" type="hidden" />
+    <input
+      type="hidden"
+      name="retURL"
+      value="https://happygringo.com/thank-you/"
+    />
+    <!-- webtolead flag -->
+    <input
+      id="00N8c00000ga5o7"
+      name="00N8c00000ga5o7"
+      type="hidden"
+      value="1"
+    />
+
+    <div class="container">
+      <div class="row">
+        <div class="col input-container">
+          <label class="required-label" for="start_date">Start Date:</label>
+          <input
+            required
+            id="start_date"
+            name="start_date"
+            size="12"
+            type="date"
+            tabindex="50"
+            onchange="recalculateDates(event)"
+            oninvalid="this.setCustomValidity('Please select start date')"
+            oninput="this.setCustomValidity('')"
+          />
+          <input
+            id="00N8c00000PAX7A"
+            name="00N8c00000PAX7A"
+            size="12"
+            type="hidden"
+            tabindex="50"
+            hidden
+          />
+          <input
+            id="00N8c00000PAcBf"
+            name="00N8c00000PAcBf"
+            size="12"
+            type="hidden"
+            tabindex="60"
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="00N8c00000ga5nw"
+            >Comfort level:</label
+          >
+          <select
+            required
+            id="00N8c00000ga5nw"
+            title="Booking Class"
+            name="00N8c00000ga5nw"
+            oninvalid="this.setCustomValidity('Please select booking class')"
+            oninput="this.setCustomValidity('')"
+          >
+            <option value="" disabled selected>-Select an option-</option>
+            <option data-opt="backpacker" value="Backpacker Gringo (Budget)">
+              Backpacker (Budget)
+            </option>
+            <option data-opt="standard" value="Standard Gringo (2+3 stars)">
+              Standard Gringo (2+3 stars)
+            </option>
+            <option data-opt="comfortable" value="Comfortable Gringo (3+4 stars)">
+              Comfortable Gringo (3+4 stars)
+            </option>
+            <option data-opt="luxury" value="Luxury Gringo (5 stars)">
+              Luxury Gringo (5 stars)
+            </option>
+          </select>
+        </div>
+        <div class="col">
+          <div id="number-travelers-container">
+            <label class="required-label" for="00N8c00000ga5o5"
+              >Number of travelers:</label
+            >
+            <input
+              required
+              id="00N8c00000ga5o5"
+              title="Total Number Pax"
+              name="00N8c00000ga5o5"
+              tabindex="40"
+              type="text"
+              placeholder="-Select # of Travelers-"
+              oninput="updateTravelers(event)"
+              oninvalid="this.setCustomValidity('Please select number of travelers')"
+              oninput="this.setCustomValidity('')"
+            />
+
+            <div
+              id="number-travelers-modal"
+              class="col"
+              tabindex="0"
+              onpointerleave="removeFocus(event)"
+            >
+              <div class="row">
+                <input id="0-4" name="00N8c00000ga5np" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="41" />
+                <label for="0-4">0 - 4 Years</label>
+              </div>
+              <div class="row">
+                <input id="5-11" name="00N8c00000ga5nu" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="42" />
+                <label for="5-11">5 - 11 Years</label>
+              </div>
+              <div class="row">
+                <input id="12-20" name="00N8c00000ga5nq" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="43" />
+                <label for="12-20">12 - 20 Years</label>
+              </div>
+              <div class="row">
+                <input id="21-29" name="00N8c00000ga5nr" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="44" />
+                <label for="21-29">21 - 29 Years</label>
+              </div>
+              <div class="row">
+                <input id="30-44" name="00N8c00000ga5ns" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="45" />
+                <label for="30-44">30 - 44 Years</label>
+              </div>
+              <div class="row">
+                <input id="45-64" name="00N8c00000ga5nt" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="45" />
+                <label for="45-64">45 - 64 Years</label>
+              </div>
+              <div class="row">
+                <input id="65+" name="00N8c00000ga5nv" onchange="updateTravelers(event)" type="number" class="number-travelers-input" min="0" tabindex="47" />
+                <label for="65+">65+ Years</label>
+              </div>
+              <hr />
+              <div class="row">
+                <label for="total-number-of-travelers">Total Number of Passengers</label>
+                <input readonly id="total-number-of-travelers" type="number" class="number-travelers-total" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <center>
+      <button class="submit btn-content">BOOK NOW</button>
+    </center>
+  </div>
+</form>
+<form
+  id="salesforceform"
+  class="salesforceform sales-form--steps"
+  action="https://v79ga6dqp1.execute-api.us-east-1.amazonaws.com/captcha"
+  method="POST"
+  onsubmit="handleSubmit(event)"
+>
+  <div id="page2" class="hidden">
+    <div class="subtitle">
+      <h3 data-title-page2>BOOK YOUR GALAPAGOS LAND TOUR TODAY</h3>
+    </div>
+    <center>Fields marked with an * are required</center>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label class="required-label" for="00N8c00000ga5nz"
+            >First &amp; Last Name:</label
+          >
+          <input
+            required
+            id="00N8c00000ga5nz"
+            maxlength="255"
+            name="00N8c00000ga5nz"
+            size="20"
+            type="text"
+            placeholder="-First & Last Name-"
+            oninvalid="setCustomValidity('Please enter your name')"
+            oninput="setCustomValidity('')"
+          />
+        </div>
+        <div class="col">
+          <label class="required-label" for="email">Email</label>
+          <input
+            id="email"
+            maxlength="80"
+            name="email"
+            size="20"
+            type="text"
+            placeholder="-Email-"
+            oninvalid="setCustomValidity('Please enter your email')"
+            oninput="setCustomValidity('')"
+          />
+        </div>
+        <div class="col">
+          <label for="phone">Phone:</label>
+          <input
+            id="phone"
+            maxlength="40"
+            name="phone"
+            size="20"
+            type="tel"
+            oninput="onlyNumbers(event)"
+            onfocus="fillCountryCode(event)"
+          />
+        </div>
+      </div>
+    </div>
+    <center>
+      <button class="submit btn-content">SEND</button>
+    </center>
+    <a style="padding: 10px; color: #e22729" onclick="previous(event)"
+      >PREVIOUS</a
+    >
+  </div>
+
+  <input id="00N8c00000ga5nx" name="00N8c00000ga5nx" title="Country_Code" type="hidden" />
+  <input id="00N8c00000ga5o6" name="00N8c00000ga5o6" title="Travel_Request__c" rows="3" type="hidden" wrap="soft" />
+</form>
+
+<script>
+(function () {
+  // Reads URL params from the host page. Supported:
+  //   ?title=...           page 1 H3 (default: "BOOK YOUR TOUR TODAY")
+  //   ?title2=...          page 2 H3 (default: "BOOK YOUR GALAPAGOS LAND TOUR TODAY")
+  //   ?product=...         hidden 00N8c00000ga5o1 (default: "Galapagos Land"; "none" removes it)
+  //   ?options=a,b,c       comfort-level options to enable (default: "standard")
+  //                        valid keys: backpacker, standard, comfortable, luxury
+  var params = new URLSearchParams(window.location.search);
+
+  var title = params.get('title');
+  if (title !== null) {
+    var t1 = document.querySelector('[data-title-page1]');
+    if (t1) t1.textContent = title;
+  }
+
+  var title2 = params.get('title2');
+  if (title2 !== null) {
+    var t2 = document.querySelector('[data-title-page2]');
+    if (t2) t2.textContent = title2;
+  }
+
+  var product = params.get('product');
+  var productInput = document.querySelector('[data-product-input]');
+  if (productInput) {
+    if (product === 'none' || product === '') {
+      productInput.parentNode.removeChild(productInput);
+    } else if (product !== null) {
+      productInput.value = product;
+    }
+  }
+
+  var optionsParam = params.get('options');
+  var enabled = (optionsParam !== null ? optionsParam : 'standard')
+    .split(',')
+    .map(function (s) { return s.trim().toLowerCase(); })
+    .filter(Boolean);
+
+  document.querySelectorAll('[data-opt]').forEach(function (opt) {
+    if (enabled.indexOf(opt.getAttribute('data-opt')) === -1) {
+      opt.parentNode.removeChild(opt);
+    }
+  });
+})();
+</script>
